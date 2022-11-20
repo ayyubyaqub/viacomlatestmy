@@ -1,0 +1,742 @@
+{% extends "base.html" %} {% load static %} {% block body %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet" />
+
+<!-- Carousel section starts -->
+<div class="carousel slide carousel-fade mb-5" data-bs-ride="carousel">
+    <div class=" carousel-inner">
+        <div class="carousel-item active">
+            <video loop muted autoplay class="carouselImage">
+                <source src="{{homevideo.video.url}}" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    <div class="carousel-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4" style="min-height:250px">
+                    <div class="mb-3">
+                        <h2 class="mb-3 fw-bold">
+                            We create videos for brands, anywhere in India.
+                        </h2>
+                        <br>
+                        <button class="mb-3 btn-lg btn btn-primary w-100"
+                            onclick="window.location.href='{%url 'create_video'%}'">
+                            <div class="d-flex justify-content-center">
+                                <i class="my-auto p-1" data-feather="plus"></i>
+                                <span class="my-auto">Create video</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="w-100 d-flex justify-content-center">
+                        <hr class="my-auto" style="padding: 0px 75px" />
+                        <p class="px-1 my-auto">
+                            <img src="{% static 'images/logos/Viacom India Logo Transparent Circle.png' %}" width="25"
+                                height="25">
+                        </p>
+                        <hr class="my-auto" style="padding: 0px 75px" />
+                    </div>
+                    <br>
+                    <div class="mb-1">
+                        <p class="h5 text-center"> Do you need help to get started?</p>
+                        <br>
+                        <button class="btn-lg mb-3 btn border-light text-light w-100"
+                            onclick="window.location.href='/contactus'"><small>Talk to someone</small></button>
+                    </div>
+                    <a href="/works" class="mb-3 text-center mb-3 text-decoration-none text-light">
+                        <p><i class="fas fa-play bg-light text-dark rounded-circle p-3"></i> Watch our works</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="container-fluid">
+    <div class="a-better-bottom-margin">
+        <h4 class="text-center d-none d-md-block">{{homepageheading.0.heading}}</h4>
+        <h4 class="text-center d-block d-md-none">{{homepageheading.0.heading}}
+        </h4>
+        <br>
+        <div class="row justify-content-center">
+            {%for image in homepageheading.0.homePageHeadingImage.all%}
+            <div class="col-auto mx-xl-4 mx-none col-sm-3 col-lg-auto my-md-3"><img class="brand-monochrome"
+                    src="{{image.image.url}}">
+            </div>
+            {%endfor%}
+        </div>
+
+    </div>
+
+    {%for super_category in super_categories%}
+
+    <div class="a-better-bottom-margin">
+        <h4 class="fw-bold">{{super_category.super_category_name}}</h4>
+        <div class="row">
+            <div class="col-lg-6">
+                <p>{{super_category.description|safe}}</p>
+            </div>
+        </div>
+
+        <!-- 'curated-video-marketplace' -->
+        {%if super_category.slug == 'curated-video-marketplace'%}
+
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6">
+            <!-- carousel -->
+
+
+
+
+            {%for category in super_category.sp.all|dictsort:"serial_number"|slice:"6"%}
+
+            <a href="/{{category.slug}}" class="item text-decoration-none mb-3">
+                <div class="card border-0">
+                    <img src="{{category.image.url}}" class="card-img-top img-fluid rounded-3">
+                    <div class="">
+                        <h6 class="text-black fw-bold mt-3 mb-1">{{category.category}}</h6>
+                        <small style="color:var(--bs-gray-800)">Know more</small>
+                    </div>
+                </div>
+            </a>
+            {%endfor%}
+            <!-- carousel -->
+        </div>
+        <div class="d-flex">
+            <a class="mx-auto btn btn-gray rounded-pill" href="{{super_category.slug}}">
+                <div class="justify-content-between p-1">
+                    <span class="my-auto">Browse all video contents </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-chevron-right my-auto p-1">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </div>
+            </a>
+        </div>
+        <!-- 'curated-video-marketplace' -->
+
+        <!-- supplementary-industry-video-marketplace -->
+        {%elif super_category.slug == 'supplementary-industry-video-marketplace'%}
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6">
+            <!-- carousel -->
+            {%for category in super_category.sp.all|dictsort:"serial_number"|slice:"6" %}
+            <a href="/{{category.slug}}" class="item text-decoration-none mb-3">
+                <div class="card border-0">
+                    <img src="{{category.image.url}}" class="card-img-top img-fluid rounded-3">
+                    <div class="">
+                        <h6 class="text-black fw-bold mt-3 mb-1">{{category.category}}</h6>
+                        <small style="color:var(--bs-gray-800)">Know more</small>
+                    </div>
+                </div>
+            </a>
+            {%endfor%}
+            <!-- carousel -->
+        </div>
+
+        <div class="d-flex">
+            <a class="mx-auto btn btn-gray rounded-pill" href="{{super_category.slug}}">
+                <div class="justify-content-between p-1">
+                    <span class="my-auto">Browse all video contents </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-chevron-right my-auto p-1">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </div>
+            </a>
+        </div>
+        <!-- supplementary-industry-video-marketplace -->
+
+        <!-- differentiated-industry-content -->
+
+
+        {%elif super_category.slug == 'differentiated-industry-content'%}
+
+
+
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6">
+            <!-- carousel -->
+            {%for category in super_category.sp.all|dictsort:"serial_number"|slice:"6" %}
+            <a href="/{{category.slug}}" class="item text-decoration-none mb-3">
+                <div class="card border-0">
+                    <img src="{{category.image.url}}" class="card-img-top img-fluid rounded-3">
+                    <div class="">
+                        <h6 class="text-black fw-bold mt-3 mb-1">{{category.category}}</h6>
+                        <small style="color:var(--bs-gray-800)">Know more</small>
+                    </div>
+                </div>
+            </a>
+            {%endfor%}
+            <!-- carousel -->
+        </div>
+
+        <div class="d-flex">
+            <a class="mx-auto btn btn-gray rounded-pill" href="{{super_category.slug}}">
+                <div class="justify-content-between p-1">
+                    <span class="my-auto">Browse all video contents </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-chevron-right my-auto p-1">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </div>
+            </a>
+            <div id="video-production-flexibility"></div>
+        </div>
+        <!-- differentiated-industry-content -->
+        <!-- video-production-flexibility-with-viacom-india -->
+        {%elif super_category.slug == 'video-production-flexibility-with-viacom-india'%}
+
+        <!-- carousel -->
+
+        <!-- carousel -->
+
+        <!-- carousel -->
+
+        <!-- carousel -->
+
+        <!-- carousel -->
+
+        <!-- carousel -->
+
+        <div class="">
+            <div id="owl-carousel-1" class="owl-carousel">
+                {%for category in super_category.sp.all|dictsort:"serial_number"|slice:"6"%}
+                <div style="cursor:pointer;" class="item text-decoration-none">
+                    <div class="card border-0 rounded-5">
+                        <img src="{{category.image.url}}" class="card-img-top img-fluid rounded-0 rounded-top">
+                        <div class="px-3 border rounded-0 rounded-bottom bg-dark">
+                            <div style="height: 270px;">
+                                <h6 class="text-white fw-bold mt-3 mb-1 text-center">{{category.category}}</h6>
+                                <p align="justify" style="font-size: 0.8rem;" class="mt-3">
+                                    <small style="color:var(--bs-gray-300)">{{category.description}}</small>
+                                </p>
+                            </div>
+                            <div class="">
+                                <button class="mb-3 btn btn-outline-primary w-100 shadow"
+                                    onclick="window.location.href='create_video'">
+                                    + Create video
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+            <div id="video-distribution-marketing-and-seeding"></div>
+        </div>
+
+
+
+        <!-- video-production-flexibility-with-viacom-india -->
+
+        <!-- video-distribution-marketing-seeding -->
+        {%elif super_category.slug == 'video-distribution-marketing-seeding'%}
+
+        <div class="d-none d-md-block">
+            <div class="row row-cols-2 g-3">
+                {%for category in super_category.videoseeding.all%}
+                <div class="col {% if forloop.counter == 3 %}order-1{% endif %}">
+                    <img class="img-fluid" src="{{category.image.url}}">
+                </div>
+                {%endfor%}
+
+            </div>
+        </div>
+
+        <div class="d-block d-md-none">
+            <div class="row row-cols-1 g-3">
+                {%for category in super_category.videoseeding.all%}
+                <div class="col">
+                    <img class="img-fluid" src="{{category.image.url}}">
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+
+
+        <!-- video-distribution-marketing-seeding -->
+
+
+
+        <!-- businesses-with-whom-we-have-had-continuous-associations -->
+        {%elif super_category.slug == 'businesses-with-whom-we-have-had-continuous-associations'%}
+        <div class="">
+
+
+
+
+            <div id="owl-carousel-3" class="owl-carousel">
+                {%for category in super_category.client.all|dictsort:"serial_number"|slice:"6" %}
+                <div class="item text-decoration-none">
+                    <div class="card border-0">
+                        <img src="{{category.client_cover.url}}" class="card-img-top img-fluid rounded-3">
+                        <div class="card-body text-center w-100">
+                            <img src="{{category.client_logo.url}}"
+                                class="rounded-circle brand-icon-testimonial w-50 mx-auto">
+                            <p class="fw-bold text-center">{{category.client_name}}</p>
+                            <p class="text-center fw-bold text-muted">
+                                {{category.client_videos}} Videos, {{category.client_shoots}} Shoots </p>
+                            <p class="text-start" style="font-size: 15px;">
+                                <small>
+                                    {{category.description}} </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+
+
+        </div>
+
+        <div class="a-better-bottom-margin">
+            <img src="{{super_category.home_image.all.0.image_desktop.url}}" class="d-none d-md-block w-100">
+            <img src="{{super_category.home_image.all.0.image_mobile.url}}" class="d-block d-md-none w-100">
+        </div>
+
+        <!-- businesses-with-whom-we-have-had-continuous-associations -->
+
+
+
+
+        <!-- create-video-anywhere-in-india -->
+        {%elif super_category.slug == 'create-video-anywhere-in-india'%}
+
+
+        <div class="">
+            <div id="owl-carousel-4" class="owl-carousel">
+                {%for category in super_category.sp.all|slice:":6" %}
+                <div class="slide-up item">
+                    <div class="box rounded-3">
+                        <img src="{{category.image.url}}" class="w-100 boxImg">
+                        <div class="overlay2">
+                            <div class="justify-content-center align-items-center d-flex h-100">
+                                <div class="mx-auto">
+                                    <h5 style="margin-top:10px; margin-bottom:0;">{{category.category}}</h5>
+                                    <p class="fw-light text-center px-3">
+                                        <small>{{category.description}}</small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+            <div id="trending-video-content"></div>
+        </div>
+
+
+
+
+        <!-- create-video-anywhere-in-india -->
+
+        <!-- explore-our-most-popular-trending-video-content-types -->
+
+        {%elif super_category.slug == 'explore-our-most-popular-trending-video-content-types'%}
+        <div class="">
+
+
+            <!-- carousel -->
+            <div id="owl-carousel-2" class="owl-carousel">
+                {%for category in super_category.sp.all|slice:":12" %}
+                <a href="/{{category.slug}}" class="item text-decoration-none">
+                    <div class="card border-0">
+                        <img src="{{category.image.url}}" class="card-img-top img-fluid rounded-3">
+                        <div class="">
+                            <h6 class="text-black fw-bold mt-3 mb-1">{{category.category}}</h6>
+                            <small style="color:var(--bs-gray-800)">Know more</small>
+                        </div>
+                    </div>
+                </a>
+                {%endfor%}
+            </div>
+            <div id="subscriptionCallBox"></div>
+
+            <!-- carousel -->
+
+
+        </div>
+        <style>
+            .owl-carousel-button {
+                border: 2px solid #e4e4e4 !important;
+                color: #e4e4e4 !important;
+                background-color: #202020 !important;
+            }
+        </style>
+
+
+        <!-- explore-our-most-popular-trending-video-content-types -->
+
+        <!-- subscription -->
+
+        {%elif super_category.slug == 'subscription'%}
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3 mb-3">
+
+            {%for category in super_category.sp.all|slice:":6" %}
+
+            <div class="col" style="cursor: pointer;">
+                <a href="subscription" class="text-decoration-none card shadow">
+                    <img src="{{category.image.url}}" class="card-img-top w-100">
+                </a>
+                <a href="subscription" class="text-decoration-none">
+                    <h6 class="text-black fw-bold mt-3 mb-1"> {{category.category}}</h6>
+                    <small class="text-muted">Know more</small>
+                </a>
+            </div>
+            {%endfor%}
+        </div>
+
+
+        <!-- subscription -->
+        <!-- what-our-clients-are-saying-about-us -->
+
+        {%elif super_category.slug == 'what-our-clients-are-saying-about-us'%}
+
+        <!-- <div class="row row-cols-md-1 row-cols-lg-3 g-3 mb-3"> -->
+        <div id="owl-carousel-5" class="owl-carousel">
+            {%for category in super_category.about_us.all%}
+
+            <!-- <div class="owl-item cloned"> -->
+            <div class="item text-decoration-none">
+                <div class="card border-0">
+                    <video controls="controls" class="video shadow border onHoverBackgroundChange"
+                        style="height:100%;border-radius: 15px;">
+                        <source src="{{category.video.url}}" type="video/mp4">
+                    </video>
+                </div>
+                <!-- </div> -->
+            </div>
+            {%endfor%}
+        </div>
+        <!-- </div> -->
+
+
+        <!-- our-clients-agencies -->
+        {%elif super_category.slug == 'our-clients-agencies'%}
+        <img src="{{super_category.home_image.all.0.image_mobile.url}}" class="d-block d-md-none w-100 img-fluid">
+        <img src="{{super_category.home_image.all.0.image_desktop.url}}" class="d-none d-md-block w-100 img-fluid">
+        <!-- our-clients-agencies -->
+
+
+        <!-- be-inspired-by-our-best-videos -->
+        {%elif super_category.slug == 'be-inspired-by-our-best-videos'%}
+
+        <div class="row g-4 row-cols-md-3 row-cols-1 justify-content-center" id="resultsHere">
+            {%for youtubevideo in super_category.work_yt_videos.all%}
+            <div class="col">
+                <a class="text-white text-decoration-none" data-bs-toggle="modal" data-bs-target="#ourWorkModel"
+                    data-youtube-video-link="{{youtubevideo.video_link}}"
+                    onclick="changeYoutubeVIdeo(this.getAttribute('data-youtube-video-link'));">
+                    <div class="shadow border onHoverBackgroundChange"
+                        style="height:100%;border-radius: 15px;background-color:#ededed;">
+                        <div class="slide-up">
+                            <div class="make-height-auto-yt-video box"
+                                style="border-top-left-radius:15px;border-top-right-radius:15px">
+                                <img src="{%if youtubevideo.image %}{{youtubevideo.image.url}}{%endif%}"
+                                    class="w-100 boxImg ourWorkImg"
+                                    style="height:350px;border-top-left-radius:15px;border-top-right-radius:15px">
+                                <div class="make-height-auto-yt-video overlay3"
+                                    style="border-top-left-radius:15px;border-top-right-radius:15px">
+                                    <div class="justify-content-center align-items-center d-flex h-100"
+                                        style="height:300px;border-top-left-radius:15px;border-top-right-radius:15px">
+                                        <div class="mx-auto">
+                                            <i
+                                                class="fas fa-play border border-light bg-light border-2 text-dark rounded-circle p-3 fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card_body">
+                            <p style="font-size: 12px;" class="mt-2 mb-0 pb-1 text-dark text-muted px-3">
+                                {{youtubevideo.title}}</p>
+                            <p style="font-size: 14px;" class="fw-bold text-dark px-3">{{youtubevideo.brief}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {%endfor%}
+            <div class="modal fade" id="ourWorkModel" tabindex="-1" aria-labelledby="ourWorkModelLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl rounded-5">
+                    <div class="position-absolute top-0 end-0">
+                        <button style="cursor: pointer;"
+                            class="btn border-danger border-2 bg-light text-danger rounded-circle"><i
+                                class="fas fa-close"></i></button>
+                    </div>
+                    <div class="modal-content" style="border-radius:15px;">
+                        <iframe id="youtube_video_here" style="width:100%;height:78vh;" src=""
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen=""></iframe>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <div class="d-flex">
+            <a class="mx-auto btn btn-gray rounded-pill mt-5" href="./works">
+                <div class="justify-content-between p-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-plus">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    <span class="my-auto">Browse more</span>
+                </div>
+            </a>
+        </div>
+        <hr style="margin-top: 100px;">
+        <!-- be-inspired-by-our-best-videos -->
+
+
+        {%endif%}
+
+
+
+
+    </div>
+
+    {%endfor%}
+    <div class="container a-better-bottom-margin">
+        <div id="clientsTestimonial" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#clientsTestimonial" data-bs-slide-to="0" class=""
+                    aria-label="Slide 0"></button>
+                <button type="button" data-bs-target="#clientsTestimonial" data-bs-slide-to="1" class=""
+                    aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#clientsTestimonial" data-bs-slide-to="2" class="active"
+                    aria-label="Slide 2" aria-current="true"></button>
+            </div>
+            <div class="carousel-inner">
+                <div style="min-height: 600px;" class="carousel-item" data-bs-interval="3000">
+                    <div class="carousel-caption h-100 d-flex align-items-center">
+                        <div class="mx-auto">
+                            <img src="{{carousels.0.image.url}}" alt="{{carousels.0.name}}"
+                                style="width: 100px; height:100px;" class="rounded-circle">
+                            <h3 class="text-dark">{{carousels.0.name}}</h3>
+                            <p class="text-muted"><small><i>{{carousels.0.designation}}</i></small>
+                            </p>
+                            <p><small>{{carousels.0.Description}}</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div style="min-height: 600px;" class="carousel-item" data-bs-interval="3000">
+                    <div class="carousel-caption h-100 d-flex align-items-center">
+                        <div class="mx-auto">
+                            <img src="{{carousels.1.image.url}}" alt="{{carousels.1.name}}"
+                                style="width: 100px; height:100px;" class="rounded-circle">
+                            <h3 class="text-dark">{{carousels.1.name}}</h3>
+                            <p class="text-muted"><small><i>{{carousels.1.designation}}</i></small></p>
+                            <p><small>{{carousels.1.Description}}</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div style="min-height: 600px;" class="carousel-item active" data-bs-interval="3000">
+                    <div class="carousel-caption h-100 d-flex align-items-center">
+                        <div class="mx-auto">
+                            <img src="{{carousels.2.image.url}}" alt="{{carousels.2.image.url}}"
+                                style="width: 100px; height:100px;" class="rounded-circle">
+                            <h3 class="text-dark">{{carousels.2.name}}</h3>
+                            <p class="text-muted"><small><i>{{carousels.2.designation}}</i></small></p>
+                            <p><small>{{carousels.2.Description}}</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#clientsTestimonial"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#clientsTestimonial"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <hr>
+    </div>
+</div>
+
+
+{% endblock body %}
+
+{% block scripts %}
+<script>
+    $('#owl-carousel-1').owlCarousel({
+        responsive: {
+            0: {
+                nav: true,
+                navText: ['<img src="https://viacomindia.s3.us-east-2.amazonaws.com/images/icons/Aero+change+pre.png" style="width:22px" />', '<img src="https://viacomindia.s3.us-east-2.amazonaws.com/images/icons/Aero+change.png" style="width:22px" />'],
+                items: 1,
+                loop: true,
+                margin: 3,
+                autoplay: true,
+                autoplayTimeout: 8000,
+                autoplayHoverPause: true,
+            },
+            600: {
+                nav: true,
+                navText: ['<img src="https://viacomindia.s3.us-east-2.amazonaws.com/images/icons/Aero+change+pre.png" style="width:22px" />', '<img src="https://viacomindia.s3.us-east-2.amazonaws.com/images/icons/Aero+change.png" style="width:22px" />'],
+                items: 2,
+                loop: true,
+                margin: 10,
+                autoplay: true,
+                autoplayTimeout: 8000,
+                autoplayHoverPause: true,
+            },
+            1000: {
+                items: 6,
+                loop: false,
+                margin: 10,
+                autoplay: false,
+            }
+        }
+    })
+    $('#owl-carousel-2').owlCarousel({
+        responsive: {
+            0: {
+                nav: true,
+                navText: ['<img src="https://viacomindia.s3.us-east-2.amazonaws.com/images/icons/Aero+change+pre.png" style="width:22px" />', '<img src="https://viacomindia.s3.us-east-2.amazonaws.com/images/icons/Aero+change.png" style="width:22px" />'],
+                items: 1,
+                center: true,
+                loop: true,
+                margin: 10,
+                autoplay: true,
+                autoplayTimeout: 8000,
+                autoplayHoverPause: true,
+            },
+            600: {
+                nav: true,
+                navText: ['<img src="https://viacomindia.s3.us-east-2.amazonaws.com/images/icons/Aero+change+pre.png" style="width:22px" />', '<img src="https://viacomindia.s3.us-east-2.amazonaws.com/images/icons/Aero+change.png" style="width:22px" />'],
+                items: 2,
+                loop: true,
+                margin: 10,
+                autoplay: true,
+                autoplayTimeout: 8000,
+                autoplayHoverPause: true,
+            },
+            1000: {
+                items: 6,
+                loop: true,
+                margin: 10,
+                autoplay: true,
+                autoplayTimeout: 8000,
+                autoplayHoverPause: true,
+            }
+        }
+    })
+    $('#owl-carousel-3').owlCarousel({
+        responsive: {
+            0: {
+                nav: true,
+                navText: ['<img src="https://viacomindia.s3.us-east-2.amazonaws.com/images/icons/Aero+change+pre.png" style="width:22px" />', '<img src="https://viacomindia.s3.us-east-2.amazonaws.com/images/icons/Aero+change.png" style="width:22px" />'],
+                center: true,
+                items: 1,
+                loop: true,
+                margin: 10,
+                autoplay: true,
+                autoplayTimeout: 8000,
+                autoplayHoverPause: true,
+            },
+            600: {
+                nav: true,
+                navText: ['<img src="https://viacomindia.s3.us-east-2.amazonaws.com/images/icons/Aero+change+pre.png" style="width:22px" />', '<img src="https://viacomindia.s3.us-east-2.amazonaws.com/images/icons/Aero+change.png" style="width:22px" />'],
+                items: 2,
+                loop: true,
+                margin: 10,
+                autoplay: true,
+                autoplayTimeout: 8000,
+                autoplayHoverPause: true,
+            },
+            1000: {
+                items: 6,
+                loop: false,
+                margin: 10,
+                autoplay: false,
+            }
+        }
+    })
+    $('#owl-carousel-4').owlCarousel({
+        responsive: {
+            0: {
+                nav: true,
+                navText: ['<img src="https://viacomindia.s3.us-east-2.amazonaws.com/images/icons/Aero+change+pre.png" style="width:22px" />', '<img src="https://viacomindia.s3.us-east-2.amazonaws.com/images/icons/Aero+change.png" style="width:22px" />'],
+                items: 1,
+                loop: true,
+                margin: 3,
+                autoplay: true,
+                autoplayTimeout: 8000,
+                autoplayHoverPause: true,
+            },
+            600: {
+                nav: true,
+                navText: ['<img src="https://viacomindia.s3.us-east-2.amazonaws.com/images/icons/Aero+change+pre.png" style="width:22px" />', '<img src="https://viacomindia.s3.us-east-2.amazonaws.com/images/icons/Aero+change.png" style="width:22px" />'],
+                items: 2,
+                loop: true,
+                margin: 10,
+                autoplay: true,
+                autoplayTimeout: 8000,
+                autoplayHoverPause: true,
+            },
+            1000: {
+                items: 6,
+                loop: false,
+                margin: 10,
+                autoplay: false,
+            }
+        }
+    })
+    $('#owl-carousel-5').owlCarousel({
+        responsive: {
+            0: {
+                nav: true,
+                navText: ['<img src="https://viacomindia.s3.us-east-2.amazonaws.com/images/icons/Aero+change+pre.png" style="width:22px" />', '<img src="https://viacomindia.s3.us-east-2.amazonaws.com/images/icons/Aero+change.png" style="width:22px" />'],
+                items: 1,
+                loop: true,
+                margin: 3,
+                autoplay: false,
+            },
+            600: {
+                nav: true,
+                navText: ['<img src="https://viacomindia.s3.us-east-2.amazonaws.com/images/icons/Aero+change+pre.png" style="width:22px" />', '<img src="https://viacomindia.s3.us-east-2.amazonaws.com/images/icons/Aero+change.png" style="width:22px" />'],
+                items: 2,
+                loop: true,
+                margin: 10,
+                autoplay: false,
+            },
+            1000: {
+                items: 3,
+                loop: false,
+                margin: 10,
+                autoplay: false,
+            }
+        }
+    })
+</script>
+<script>
+    $('.video').bind('play', function (e) {
+        var video = $('video');
+        for (var i = 0; i < video.length; i++) {
+            if (video[i] != e.target) {
+                video[i].pause();
+            }
+        }
+    });
+</script>
+{% endblock scripts %}

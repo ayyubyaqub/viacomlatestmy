@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+{% block canonical %}
+<link rel="canonical" href="https://viacomindia.com/about-us" />
+{% endblock canonical %}
+{% load static %} {% block body %}
+<div id="myCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <video loop="" muted="" autoplay="" class="carouselImage">
+                <source src="{{aboutus.video.url}}" type="video/mp4">
+            </video>
+            <div class="container">
+                <div class="carousel-caption text-center bg-blurry p-3 rounded">
+                    <div class="d-flex">
+                        <div class="mx-auto">
+                            <h1 class="display-3 border-5 py-3 text-uppercase" style="letter-spacing: 10px;">
+                                {{aboutus.title}}</h1>
+                        </div>
+                    </div>
+                    <a href="#scrollDown" class="text-white text-decoration-none text-uppercase"
+                        style="letter-spacing: 10px;">
+                        <p class="pb-3 fw-light d-none d-md-block">{{aboutus.subtitle}}</p>
+                        <p class="pb-3 fw-light d-block d-md-none">
+                            {{aboutus.subtitle_mobile|safe}}
+                        </p>
+
+                        <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-chevrons-down">
+                                <polyline points="7 13 12 18 17 13"></polyline>
+                                <polyline points="7 6 12 11 17 6"></polyline>
+                            </svg></p>
+                    </a>
+                    <div id="scrollDown"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="container-fluid">
+    <div class="a-better-bottom-margin">
+        <p class="text-center fw-bold h5">
+            {{aboutus.heading|safe}}
+        </p>
+    </div>
+    <div class="mb-3 pt-5">
+        <div class="row g-5">{%for attribute in aboutus.attribute.all%}
+            <div class="col-md-4 mb-5 memberCard">
+                <div style="height: 330px;" class="card px-3 pt-1 rounded-5 bg-dark text-light">
+                    <div class="card-body">
+                        <p class="card-text ps-3 text-start border-start pe-1 border-5">
+                        </p>
+                        <h2 class="text-center">{{attribute.title}}</h2>
+                        <hr>
+                        <p>{{attribute.discription}}
+                        </p>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+            <div id="team"></div>
+        </div>
+    </div>
+
+
+    <div class="mb-5">
+        <div class="d-flex">
+            <div class="mx-auto">
+                <h1 class="border-top border-5 py-3">{{aboutus.title2}}</h1>
+            </div>
+        </div>
+        <p class="text-center h5">{{aboutus.description}}</p>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row row-cols-2 row-cols-sm-5 g-1">
+        {%for member in Aboutusteam %}
+        <div class="col">
+            <div class="slide-up">
+                <div class="box">
+                    <img src="{{member.image.url}}" class="w-100 boxImg">
+                    <div class="overlay">
+                        <h5 style="margin-top:5px; margin-bottom:0;">{{member.name}}</h5>
+                        <h6>
+                            <small>{{member.designation}}</small>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>{%endfor%}
+    </div>
+</div>
+
+<div class="container">
+    <div class="d-flex mb-3">
+        <img style="width:100px;" class="mx-auto pt-5"
+            src="{%if aboutus.image_logo_bottum %}{{aboutus.image_logo_bottum.url}}{%endif%}">
+    </div>
+    <div class="d-flex mb-3">
+        <video class="w-100 mx-auto" autoplay="" loop="" muted="">
+            <source src="{%if aboutus.video_bottum %}{{aboutus.video_bottum.url}}{%endif%}">
+        </video>
+    </div>
+    <p class="fw-light text-center h1">Start <span class="fw-bold">creating</span> amazing videos with us.</p>
+    <div class="d-flex mb-3 w-100 pt-5">
+        <button class="mx-auto m-3 btn btn-lg btn-primary" onclick="window.location.href='/create_video/#'"><svg
+                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-plus">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg> Create video</button>
+    </div>
+</div>
+<div class="container-fluid my-5 py-5">
+    <div class="mb-5">
+        <h4 class="fw-bold">{{aboutus.youtube_title|safe}}</h4>
+        <p>{{aboutus.youtube_title_desc|safe}}</p>
+    </div>
+    <div class="my-5">
+        <div class="row g-2 row-cols-1 row-cols-md-2 row-cols-lg-3">
+
+
+            {%for youtubevideo in aboutus.about_us_youtube.all %}
+
+            <div class="col">
+                <a href="#!" class="text-white text-decoration-none" data-bs-toggle="modal"
+                    data-bs-target="#ourWorkModel" data-youtube-video-link="{{youtubevideo.video_link}}"
+                    onclick="changeYoutubeVIdeo(this.getAttribute('data-youtube-video-link'));">
+                    <div class="shadow border onHoverBackgroundChange"
+                        style="height:100%;border-radius: 15px;background-color:#ededed;">
+                        <div class="slide-up">
+                            <div class="make-height-auto box"
+                                style="border-top-left-radius:15px;border-top-right-radius:15px">
+                                <img src="{{youtubevideo.image.url}}" class="img-fluid w-100 boxImg ourWorkImg make-height-auto"
+                                    style="border-top-left-radius:15px;border-top-right-radius:15px; object-fit:fill;">
+                                <div class="make-height-auto overlay3"
+                                    style="border-top-left-radius:15px;border-top-right-radius:15px">
+                                    <div class="justify-content-center align-items-center d-flex h-100"
+                                        style="height:300px;border-top-left-radius:15px;border-top-right-radius:15px">
+                                        <div class="mx-auto">
+                                            <i
+                                                class="fas fa-play border border-light bg-light border-2 text-dark rounded-circle p-3 fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card_body">
+                            <p style="font-size: 12px;" class="mt-2 mb-0 pb-1 text-dark text-muted px-3">
+                                {{youtubevideo.title}}</p>
+                            <p style="font-size: 14px;" class="fw-bold text-dark px-3">{{youtubevideo.brief}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {%endfor%}
+        </div>
+        <div class="modal fade" id="ourWorkModel" tabindex="-1" aria-labelledby="ourWorkModelLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl rounded-5">
+                <div class="position-absolute top-0 end-0">
+                    <button style="cursor: pointer;"
+                        class="btn border-danger border-2 bg-light text-danger rounded-circle"><i
+                            class="fas fa-close"></i></button>
+                </div>
+                <div class="modal-content" style="border-radius:15px;">
+                    <iframe id="youtube_video_here" style="width:100%;height:78vh;" src="{{youtubevideo.video_link}}"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen=""></iframe>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="d-flex">
+        <a class="mx-auto btn btn-gray rounded-pill mt-5" href="/works">
+            <div class="justify-content-between p-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-plus">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                <span class="my-auto">Browse more</span>
+            </div>
+        </a>
+    </div>
+</div>
+
+{% endblock body %}

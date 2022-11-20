@@ -1,0 +1,49 @@
+{% load static %}
+<!-- Feather Icons -->
+<script src="https://unpkg.com/feather-icons"></script>
+
+<!-- Fontawesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- Custom styling -->
+<link rel="stylesheet" href="{% static '/css/required.css' %}" />
+
+
+
+
+<!-- Meta for SEO -->
+<!-- Favicon -->
+<link rel="shortcut icon" href="{% static 'images/logos/Viacom India Logo Circle bv.png' %}" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/logos/Viacom India Logo Circle bv.png' %}">
+<link rel="icon" type="image/png" href="{% static 'images/logos/Viacom India Logo Circle bv.png' %}" sizes="32x32">
+<link rel="icon" type="image/png" href="{% static 'images/logos/Viacom India Logo Circle bv.png' %}" sizes="16x16">
+<link rel="mask-icon" href="{% static 'images/logos/Viacom India Logo Circle bv.png' %}" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+<meta name="google-site-verification" content="26G0RyMUStgGS_9GK3M6EJbVmClv2lkyJsNAiZ7D5-M" />
+
+
+<meta name="description" content="{{meta_description}}" />
+<meta name="description" content="Top video content production services" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="{{meta_description}}" />
+<meta property="og:url" content="https://www.viacomindia.com/" />
+{% if meta_title == 'Viacom India' %}
+<meta property="og:title" content="{{meta_title}}" />
+<meta property="og:site_name" content="{{meta_title}}" />
+<meta name="twitter:title" content="{{meta_title}}" />
+{% else %}
+<meta property="og:title" content="{{meta_title}} - Viacom India" />
+<meta property="og:site_name" content="{{meta_title}} - Viacom India" />
+<meta name="twitter:title" content="{{meta_title}} - Viacom India" />
+{% endif %}
+<meta property="article:modified_time" content="2022-03-11T07:17:41+00:00" />
+<meta property="og:image" content="{% static 'images/logos/Viacom India Logo Circle bv.png' %}" />
+<meta name="twitter:card" content="{% static 'images/logos/Viacom India Logo Circle bv.png' %}" />
+<meta name="twitter:description" content="{{meta_description}}" />
+
+{% for meta in metas %}
+<meta name="{{meta.meta_name}}" content="{{meta.meta_description}}" />
+{% endfor %}

@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% block canonical %}
+<link rel="canonical" href="https://viacomindia.com/{{subcategory.slug}}" />
+{% endblock canonical %}
+{% load static %} {% block body %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet" />
+
+<div style="position: relative; top:7vh;">
+    <div class="container-fluid my-5 pb-5">
+        <nav style="--bs-breadcrumb-divider: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&quot;);"
+            aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a class="link-spoffer" onclick="window.location.href='/'">Home</a>
+                </li>
+                <li class="breadcrumb-item firstLetterCapitalizer"><a class="link-spoffer"
+                        onclick="window.location.href='/{{supercategory.slug}}'">our {{supercategory}}</a></li>
+                <li class="breadcrumb-item firstLetterCapitalizer" aria-current="page"><a class="link-spoffer"
+                        onclick="window.location.href='/{{category.slug}}'">{{category.category}}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{subcategory.subcategory}}</li>
+            </ol>
+        </nav>
+        <div class="my-3">
+            <button class="btn btn-sm border-primary text-primary" onclick="window.history.back();"><i
+                    class="fa fa-chevron-left"></i> Back</button>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <h3 class="fw-bold">{{subcategory.subcategory}}</h3>
+                <p>{{subcategory.description|safe}}</p>
+                <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-3 g-2 mb-3">
+                    <div class="col">
+                        <button class="btn-brown rounded-pill btn w-100"
+                            onclick="window.location.href='{%url 'create_video'%}'"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-plus">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg> Create Video</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <video controls="" autoplay="" muted="" loop="" class="w-100" style="border-radius: 10px;">
+                    <source src="{{subcategory.video.url}}">
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mb-5">
+    <div id="allSubCategories"></div>
+    <div class="mb-5">
+        <img src="{{imageclientand_vi.image_client.url}}" class="w-100">
+    </div>
+    {%if category.categories.all%}
+    <div class="mb-5">
+        <h3 class="fw-bold">Proven {{category.category}} products</h3>
+        <p>Explore our {{category.category}} products to get the best results.</p>
+    </div>
+    {%endif%}
+    {{category.SuperCategory.slug}}
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-2 justify-content-start">
+        {%for subcategories in category.categories.all%}
+        <div class="col">
+            <a href="/{{subcategories.slug}}" class="text-decoration-none text-dark">
+                <div class="card border-0">
+                    <img src="{{subcategories.image.url}}" class="card-img-top w-100 border shadow rounded-3">
+                    <div class="card-body">
+                        <h6 class="text-muted fw-bold mt-1 mb-0">{{subcategories.subcategory}}</h6>
+                        <small style="color:var(--bs-gray-800)">know more</small>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {%endfor%}
+    </div>
+</div>
+<div class="container-fluid mb-5 pt-5">
+    <div class="mb-5">
+        <h3 class="fw-bold">Other video's of {{supercategory.super_category_name}}</h3>
+        <p>We’ve got more for you. Let's have a look at all our video products.</p>
+        <div class="owl-carousel">
+            {%for category in supercategory.sp.all%}
+            <a href="/{{category.slug}}" class="item text-decoration-none">
+                <div class="card border-0">
+                    <img src="{{category.image.url}}" class="card-img-top img-fluid rounded-3">
+                    <div class="">
+                        <h6 class="text-muted fw-bold mt-1 mb-0">{{categry.category}}</h6>
+                        <small style="color:var(--bs-gray-800)">know more</small>
+                    </div>
+                </div>
+            </a>
+            {%endfor%}
+        </div>
+
+        <style>
+            .owl-carousel-button {
+                border: 2px solid #e4e4e4 !important;
+                color: #e4e4e4 !important;
+                background-color: #202020 !important;
+            }
+        </style>
+        <script>
+            $('.owl-carousel').owlCarousel({
+                responsive: {
+                    0: {
+                        nav: true,
+                        navText: ['<img src="https://viacomindia.s3.us-east-2.amazonaws.com/images/icons/Aero+change+pre.png" style="width:22px" />', '<img src="https://viacomindia.s3.us-east-2.amazonaws.com/images/icons/Aero+change.png" style="width:22px" />'],
+                        items: 1,
+                        loop: true,
+                        margin: 3,
+                        autoplay: true,
+                        autoplayTimeout: 8000,
+                        autoplayHoverPause: true,
+                    },
+                    600: {
+                        nav: true,
+                        navText: ['<img src="https://viacomindia.s3.us-east-2.amazonaws.com/images/icons/Aero+change+pre.png" style="width:22px" />', '<img src="https://viacomindia.s3.us-east-2.amazonaws.com/images/icons/Aero+change.png" style="width:22px" />'],
+                        items: 2,
+                        loop: true,
+                        margin: 10,
+                        autoplay: true,
+                        autoplayTimeout: 8000,
+                        autoplayHoverPause: true,
+                    },
+                    1000: {
+                        items: 6,
+                        loop: false,
+                        margin: 10,
+                        autoplay: false,
+                    }
+                }
+            })
+        </script>
+
+        <!-- <p class="text-center"><button class="btn btn-outline-dark btn-sm"
+                onclick="window.location.href='../../video_categories?get=curated marketplace'"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-chevron-left">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg> Browse more</button></p> -->
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container-fluid mb-5 pt-5">
+    <div class="mb-5">
+        <a href="https://www.youtube.com/c/ViacomIndiatv/videos" target="_blank">
+            <img src="{{imageclientand_vi.watch_our_more_work.url}}" class="w-100 d-none d-md-block">
+            <img src="{{imageclientand_vi.watch_our_more_work_mobile.url}}" class="w-100 d-md-none d-block">
+        </a>
+    </div>
+</div>
+{% endblock body %}

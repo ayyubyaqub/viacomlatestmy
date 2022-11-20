@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+{% block canonical %}
+<link rel="canonical" href="https://viacomindia.com/categories" />
+{% endblock canonical %}
+{% load static %} {% block body %}
+<div class="container-fluid" style="margin-top: 130px;">
+    <div class="d-flex">
+        <div class="ms-auto">
+            <p class="h1 fw-bold my-2">Categories</p>
+        </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 mb-4 justify-content-end">
+        <div class="col">
+            <div class="d-flex">
+                <label for="search" class="d-flex">
+                    <i class="fas fa-search my-auto me-1"></i>
+                    <p class="my-auto mx-1"></p>
+                </label>
+                <!-- <input type="search" id="search" class="form-control" placeholder="Search" oninput="sortAllCategories(this.value);" onchange="sortAllCategories(this.value)"> -->
+                <input type="search" class="form-control ml-auto" placeholder="Search..."
+                    oninput="searchForThisCategory(this.value)">
+            </div>
+        </div>
+    </div>
+    <div class="hideOnsearch">
+        {%for supercategory in supercategories %}
+        {%for category in supercategory.sp.all|dictsort:"serial_number"%}
+        {%if category.categories.all %}
+        <div class="row h-100">
+            <div class="col-sm-12 a-better-bottom-margin">
+                <h4 class="fw-bold">{{category.category}}</h4>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p>{{category.brief|safe}}</p>
+                    </div>
+                </div>
+                <div class="row g-3">
+                    {% for subcategories in category.categories.all|dictsort:"serial_number" %}
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-2">
+                        <a href="/{{subcategories.slug}}" class="card text-decoration-none border-0">
+                            <img src="{{subcategories.image.url}}" class="card-img-top rounded-3">
+                            <h6 class="text-black fw-bold mt-1 resultSubCategoryName">{{subcategories.subcategory}}</h6>
+                            <small style="color:var(--bs-gray-800)">Know more</small>
+                        </a>
+                    </div>
+                    {%endfor%}
+
+                </div>
+            </div>
+        </div>
+        {%endif%}
+        {%endfor%}
+        {%endfor%}
+    </div>
+    <div style="text-align: center;" class="my-5">
+        <div class="loadingScreen"></div>
+        <div class="resultCategory showOnsearch"></div>
+    </div>
+
+    <style>
+        .loadingScreen {
+            position: relative;
+            left: 50%;
+            top: 50%;
+            z-index: 1;
+            width: 120px;
+            height: 120px;
+            margin: -76px 0 0 -76px;
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Add animation to "page content" */
+        .resultCategory {
+            position: relative;
+            -webkit-animation-name: animatebottom;
+            -webkit-animation-duration: 1s;
+            animation-name: animatebottom;
+            animation-duration: 1s
+        }
+
+        @-webkit-keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+
+            to {
+                bottom: 0px;
+                opacity: 1
+            }
+        }
+
+        @keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+
+            to {
+                bottom: 0;
+                opacity: 1
+            }
+        }
+    </style>
+</div>
+
+
+
+{% endblock body %}
+
+{% block scripts %}
+<script>
+    $(document).ready(() => {
+        $('.loadingScreen').hide();
+        $('.hideOnsearch').show();
+    })
+    const searchForThisCategory = (e) => {
+        var search = e.trim().toLowerCase();
+        var result = $('.resultCategory');
+        if (search != '') {
+            $('.hideOnsearch').hide();
+            $('.showOnsearch').hide();
+            $('.loadingScreen').show();
+            $.ajax({
+                method: 'get',
+                data: {
+                    'search': search,
+                    'query': 'get_searched_query',
+                },
+                success: function (res) {
+                    if (res.length > 0) {
+                        result = '';
+                        result += '<h4 class="fw-bold firstLetterCapitalizer">Searched results</h4>'
+                        result += '<div class="row h-100 g-3 resultCategory">'
+                        res.forEach(element => {
+                            result +=
+                                '<div class="col-6 col-sm-6 col-md-4 col-lg-2">' +
+                                '<a href="/' + element["slug"] + '" class="card text-decoration-none border-0">' +
+                                '<img src="https://viacomindia.s3.us-east-2.amazonaws.com/' + element["image"] + '" class="card-img-top rounded-3">' +
+                                '<h6 class="text-black fw-bold mt-1 resultSubCategoryName text-start">' + element["subcategory"] + '</h6>' +
+                                '<small style="color:var(--bs-gray-800)" class="text-start">Know more</small>' +
+                                '</a>' +
+                                // '<a href="/' + element["slug"] + '" class="card text-decoration-none border-0 rounded-3">' +
+                                // '<div class="slide-up rounded-3">' +
+                                // '<div class="box rounded-3">' +
+                                // '<img src="https://viacomindia.s3.us-east-2.amazonaws.com/' + element["image"] + '" class="w-100 boxImg ourWorkImg rounded-3" style="width: 100%; height:300px;object-fit:cover;">' +
+                                // '<div class="overlay3">' +
+                                // '<div class="justify-content-center align-items-center d-flex h-100">' +
+                                // '                                                <div class="mx-auto">' +
+                                // '<h6 class="text-light fw-bold mt-1 resultCategoryName">' + element["subcategory"] + '</h6>' +
+                                // '<button class="btn btn-primary btn-sm"><small style="color:var(--bs-light-800)">Know more</small></button>' +
+                                // '</div>' +
+                                // '</div>' +
+                                // '</div>' +
+                                // '</div>' +
+                                // '</div>' +
+
+                                // '</a>' +
+                                '</div>'
+                        });
+                        result += '</div>'
+                        $('.showOnsearch').html(result)
+                    } else {
+                        $('.showOnsearch').html(
+                            '<h4 class="fw-bold firstLetterCapitalizer ">no data found</h4>'
+                        );
+                    }
+                    $('.loadingScreen').hide();
+                    $('.showOnsearch').show();
+                }
+            })
+        } else {
+            $('.hideOnsearch').show();
+            $('.showOnsearch').hide();
+            $('.loadingScreen').hide();
+        }
+    }
+</script>
+
+{% endblock scripts %}

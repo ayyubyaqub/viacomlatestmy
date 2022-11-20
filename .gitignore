@@ -1,0 +1,20 @@
+# Virtual enviorment
+venv
+
+# File containing secrets
+secret.py
+
+# Cache files
+**/__pycache__*
+
+# Static files
+assets
+staticfiles
+
+# Extras
+db.sqlite3
+
+# files to be exclude
+*.jpg
+*.mp4
+*.png

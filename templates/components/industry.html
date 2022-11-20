@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+{% block canonical %}
+<link rel="canonical" href="https://viacomindia.com/all-industry" />
+{% endblock canonical %}
+{% load static %} {% block body %}
+{% for supercategory in supercategories %}
+<div class="container-fluid {% if forloop.first %}pt-4{% endif %}" style="min-height: 80vh;">
+    <div id="mainContentBox" style="margin-top:100px;">
+        <nav style="--bs-breadcrumb-divider: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&quot;);"
+            aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a class="link-spoffer" onclick="window.location.href='../'">Home</a></li>
+                <li class="breadcrumb-item active firstLetterCapitalizer" aria-current="page">
+                    {{supercategory.super_category_name}}</li>
+            </ol>
+        </nav>
+        <div class="my-3">
+            <button class="btn btn-sm border-primary text-primary" onclick="window.history.back();"><i
+                    class="fa fa-chevron-left"></i> Back</button>
+        </div>
+        <h4 class="fw-bold">{{supercategory.super_category_name}}</h4>
+        <div class="row">
+            <div class="col-lg-6">
+                <p>{{supercategory.description|safe}}</p>
+            </div>
+        </div>
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3">
+            {% for category in supercategory.sp.all|dictsort:"serial_number" %}
+            <div class="col">
+                <!-- carousel -->
+                <a href="/{{category.slug}}" class="item text-decoration-none pointer-cursor">
+                    <div class="card border-0">
+                        <img src="{{category.image.url}}" class="card-img-top img-fluid rounded-3">
+                        <div class="">
+                            <h6 class="text-muted fw-bold mt-1 mb-0">{{category.category}}</h6>
+                            <small style="color:var(--bs-gray-800)">Know more</small>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {%endfor%}
+        </div>
+        {%if supercategory.supercategory_video.all %}
+        <div class="container-fluid my-3">
+            <h4 class="fw-bold mb-5">{{supercategory.supercategory_video.all.0.heading}}</h4>
+            <div class="row row-cols-1 row-cols-lg-3">
+                <div class="col">
+                    <a class="text-white text-decoration-none" data-bs-toggle="modal" data-bs-target="#ourWorkModel"
+                        data-youtube-video-link="{{supercategory.supercategory_video.all.0.video_link_youtube1}}""
+                            onclick=" changeYoutubeVIdeo(this.getAttribute('data-youtube-video-link'));">
+                        <div class="shadow border onHoverBackgroundChange"
+                            style="height:100%;border-radius: 15px;background-color:#ededed;">
+                            <div class="slide-up">
+                                <div class="make-height-auto-yt-video box"
+                                    style="border-top-left-radius:15px;border-top-right-radius:15px">
+                                    <img src="{%if supercategory.supercategory_video.all.0.image_youtube1 %}{{supercategory.supercategory_video.all.0.image_youtube1.url}}{%endif%}"
+                                        class="w-100 boxImg ourWorkImg"
+                                        style="height:350px;border-top-left-radius:15px;border-top-right-radius:15px">
+                                    <div class="make-height-auto-yt-video overlay3"
+                                        style="border-top-left-radius:15px;border-top-right-radius:15px">
+                                        <div class="justify-content-center align-items-center d-flex h-100"
+                                            style="height:300px;border-top-left-radius:15px;border-top-right-radius:15px">
+                                            <div class="mx-auto">
+                                                <i
+                                                    class="fas fa-play border border-light bg-light border-2 text-dark rounded-circle p-3 fa-2x"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card_body">
+                                <p style="font-size: 12px;" class="mt-2 mb-0 pb-1 text-dark text-muted px-3">
+                                    {{supercategory.supercategory_video.all.0.title_youtube1}}</p>
+                                <p style="font-size: 14px;" class="fw-bold text-dark px-3">
+                                    {{supercategory.supercategory_video.all.0.brief_youtube1}}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="text-white text-decoration-none" data-bs-toggle="modal" data-bs-target="#ourWorkModel"
+                        data-youtube-video-link="{{supercategory.supercategory_video.all.0.video_link_youtube2}}"
+                        onclick="changeYoutubeVIdeo(this.getAttribute('data-youtube-video-link'));">
+                        <div class="shadow border onHoverBackgroundChange"
+                            style="height:100%;border-radius: 15px;background-color:#ededed;">
+                            <div class="slide-up">
+                                <div class="make-height-auto-yt-video box"
+                                    style="border-top-left-radius:15px;border-top-right-radius:15px">
+                                    <img src="{%if supercategory.supercategory_video.all.0.image_youtube2 %}{{supercategory.supercategory_video.all.0.image_youtube2.url}}{%endif%}"
+                                        class="w-100 boxImg ourWorkImg"
+                                        style="height:350px;border-top-left-radius:15px;border-top-right-radius:15px">
+                                    <div class="make-height-auto-yt-video overlay3"
+                                        style="border-top-left-radius:15px;border-top-right-radius:15px">
+                                        <div class="justify-content-center align-items-center d-flex h-100"
+                                            style="height:300px;border-top-left-radius:15px;border-top-right-radius:15px">
+                                            <div class="mx-auto">
+                                                <i
+                                                    class="fas fa-play border border-light bg-light border-2 text-dark rounded-circle p-3 fa-2x"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card_body">
+                                <p style="font-size: 12px;" class="mt-2 mb-0 pb-1 text-dark text-muted px-3">
+                                    {{supercategory.supercategory_video.all.0.title_youtube2}}</p>
+                                <p style="font-size: 14px;" class="fw-bold text-dark px-3">
+                                    {{supercategory.supercategory_video.all.0.brief_youtube2}}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col">
+                    <a class="text-white text-decoration-none" data-bs-toggle="modal" data-bs-target="#ourWorkModel"
+                        data-youtube-video-link="{{supercategory.supercategory_video.all.0.video_link_youtube3}}"
+                        onclick="changeYoutubeVIdeo(this.getAttribute('data-youtube-video-link'));">
+                        <div class="shadow border onHoverBackgroundChange"
+                            style="height:100%;border-radius: 15px;background-color:#ededed;">
+                            <div class="slide-up">
+                                <div class="make-height-auto-yt-video box"
+                                    style="border-top-left-radius:15px;border-top-right-radius:15px">
+                                    <img src="{%if supercategory.supercategory_video.all.0.image_youtube3 %}{{supercategory.supercategory_video.all.0.image_youtube3.url}}{%endif%}"
+                                        class="w-100 boxImg ourWorkImg"
+                                        style="height:350px;border-top-left-radius:15px;border-top-right-radius:15px">
+                                    <div class="make-height-auto-yt-video overlay3"
+                                        style="border-top-left-radius:15px;border-top-right-radius:15px">
+                                        <div class="justify-content-center align-items-center d-flex h-100"
+                                            style="height:300px;border-top-left-radius:15px;border-top-right-radius:15px">
+                                            <div class="mx-auto">
+                                                <i
+                                                    class="fas fa-play border border-light bg-light border-2 text-dark rounded-circle p-3 fa-2x"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card_body">
+                                <p style="font-size: 12px;" class="mt-2 mb-0 pb-1 text-dark text-muted px-3">
+                                    {{supercategory.supercategory_video.all.0.title_youtube3}}</p>
+                                <p style="font-size: 14px;" class="fw-bold text-dark px-3">
+                                    {{supercategory.supercategory_video.all.0.brief_youtube3}}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="modal fade" id="ourWorkModel" tabindex="-1" aria-labelledby="ourWorkModelLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl rounded-5">
+                        <div class="position-absolute top-0 end-0">
+                            <button style="cursor: pointer;"
+                                class="btn border-danger border-2 bg-light text-danger rounded-circle"><i
+                                    class="fas fa-close"></i></button>
+                        </div>
+                        <div class="modal-content" style="border-radius:15px;">
+                            <iframe id="youtube_video_here" style="width:100%;height:78vh;" src=""
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen=""></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex">
+                <a class="mx-auto btn btn-gray rounded-pill mt-5" href="/works">
+                    <div class="justify-content-between p-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-plus">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        <span class="my-auto">Browse more</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {%endif%}
+    </div>
+</div>
+{% if not forloop.last %}
+<hr style="background: linear-gradient(to left, #1da1f2,blue); height: 25px;" class="mb-0" />
+{% endif %}
+{% endfor %}
+
+{% endblock body %}

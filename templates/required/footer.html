@@ -1,0 +1,72 @@
+<!-- back to top button -->
+<div class="position-fixed w-100" style="bottom: 0%;display:none;z-index:3;" id="backToTopButton">
+    <div class="container-fluid">
+        <div class="d-flex">
+            <div class="ms-auto mb-2 me-2">
+                <a id="js-top" class="btn btn-sm bg-blurry text-white w-100">
+                    <i data-feather="chevron-up"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- back to top button -->
+
+{% load static %}
+<style>
+    .header-whole {
+    -webkit-transition: all 0.6s;
+    -moz-transition: all 0.6s;
+    -o-transition: all 0.6s;
+    transition: all 0.6s;
+}
+</style>
+<!-- OWL carousel -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+    integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    const $navbar = $('.header-whole');
+    feather.replace()
+    jQuery(function ($) {
+        $(window).scroll(function (event) {
+            var $current = $(this).scrollTop();
+            if ($current > 20) {
+                $navbar.addClass('bg-dark fw-bold border-bottom').removeClass('bg-blurry-1');
+            } else {
+                $navbar.addClass('bg-blurry-1').removeClass('bg-dark border-bottom');
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('#js-top').fadeIn();
+            } else {
+                $('#js-top').fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        $('#js-top').click(function () {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 10);
+            $navbar.animate({
+                paddingTop: "+=30vh",
+                paddingBottom: "+=30vh"
+            }, 300);
+            $navbar.animate({
+                paddingTop: "-=30vh",
+                paddingBottom: "-=30vh"
+            }, 200);
+            $navbar.animate({
+                paddingTop: "+=1vh",
+                paddingBottom: "+=1vh"
+            }, 50);
+            return false;
+        });
+    });
+</script>
+
+<script src="{% static 'js/required.js' %}"></script>

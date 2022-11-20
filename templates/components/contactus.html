@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% block canonical %}
+<link rel="canonical" href="https://viacomindia.com/contactus" />
+{% endblock canonical %}
+{% load static %} {% block body %}
+<div class="container-fluid" style="margin-top: 160px;">
+    <h1 class="text-center" style=" font-weight:bolder;">CONTACT US</h1>
+    <p class="text-center" style="font-size: 1.5rem;">Being the #1 choice for creative videos & digital communication in
+        India</p>
+    <hr style="padding: 1px;">
+    <div class="section-2-contact mt-5 mb-5">
+        <div class="row row-cols-1 row-cols-md-2">
+            <div class="col h-100">
+                <div class="containers d-flex justify-content-evenly flex-nowrap flex-column"
+                    style="border: 1px solid black;">
+                    <form action="{% url 'contactus' %}" method="post">
+                        {% csrf_token %}
+                        <div class="text-center bg-dark text-white mb-4">
+                            <h4>Fill the Form</h4>
+                        </div>
+                        <div class="container">
+                            <div class="row row-cols-1 row-cols-md-2 g-3 mb-4">
+                                <div class="col">
+                                    <label for="fullname" class="form-label">Full name</label>
+                                    <input type="text" class="form-control" id="fullname" placeholder="John Doe"
+                                        name="fullname" required />
+                                </div>
+                                <div class="col">
+                                    <label for="phone" class="form-label">Phone no.</label>
+                                    <input type="text" class="form-control" id="phone" placeholder="+911234567890"
+                                        name="phone" required />
+                                </div>
+                                <div class="col">
+                                    <label for="website" class="form-label">Website</label>
+                                    <input type="text" class="form-control" id="website" placeholder="www.example.com"
+                                        name="website" />
+                                </div>
+                                <div class="col">
+                                    <label for="email" class="form-label">E-mail</label>
+                                    <input type="email" class="form-control" id="email" placeholder="name@example.com"
+                                        name="email" required />
+                                </div>
+                            </div>
+
+                            <div class="row row-cols-1 g-4 mb-3 justify-content-center">
+                                <div class="col">
+                                    <textarea class="form-control" name="description" id="id_description"
+                                        style="height: 150px;" placeholder="Description"></textarea>
+                                </div>
+                                <div class="col">
+                                    <label class="form-label">Prove that you're not a robot</label>
+                                    <div class="h-captcha" data-sitekey="20f8bf2c-ced8-4abe-80f1-d55c27a91dd9"
+                                        data-callback="onSubmitForm" data-size="compact"></div>
+                                </div>
+                                <div class="col">
+                                    <button name="submitButton" type="submit" class="btn btn-lg btn-primary w-100"
+                                        disabled>Send</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col my-auto">
+                <table class="mx-auto border-start border-dark border-2 my-3">
+                    <tbody>
+                        <tr>
+                            <th class="ps-3">
+                                <p>Video Inquiries:&nbsp;</p>
+                            </th>
+                            <td>
+                                <p>
+                                    <a href="mailto:video@viacomindia.com" target="_blank"
+                                        class="text-decoration-none">video@viacomindia.com</a>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="ps-3">
+                                <p>Business Inquiries:&nbsp;</p>
+                            </th>
+                            <td>
+                                <p>
+                                    <a href="mailto:business@viacomindia.com" target="_blank"
+                                        class="text-decoration-none">business@viacomindia.com</a>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="ps-3">
+                                <p>General Inquiries:&nbsp;</p>
+                            </th>
+                            <td>
+                                <p>
+                                    <a href="mailto:info@viacomindia.com" target="_blank"
+                                        class="text-decoration-none">info@viacomindia.com</a>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="ps-3">
+                                <p>Contact us:&nbsp;</p>
+                            </th>
+                            <td>
+                                <p>
+                                    <a href="tel:+919717337326" target="_blank" class="text-decoration-none">+91 971733
+                                        7326</a>
+                                    <br />
+                                    <a href="tel:917208999001" target="_blank" class="text-decoration-none">+91 720 899
+                                        9001</a>
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <hr style="padding: 1px;">
+    <div class="container mt-5">
+        <h1 class="text-center" style=" font-weight:bold; font-size:50px;">ADDRESS</h1>
+        <div class="container mb-5" style="margin-top: 70px">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3 mb-5">
+                {%for i in contact_us_location%}
+                <div class="col">
+                    <div class="card p-0 card-address">
+                        <div class="card-header p-0 bg-dark text-center text-white">
+                            <p style="padding: 0px; margin: 0px;">{{i.heading}}</p>
+                        </div>
+                        <div class="cad-body">
+                            <p style="margin: 15px;">{{i.address}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+
+
+            </div>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.2354528061414!2d76.99932571507837!3d28.44231788249315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1822096509bd%3A0xbc2d77b5b08726f1!2sViacom%20India%20LLP!5e0!3m2!1sen!2sin!4v1647701618976!5m2!1sen!2sin"
+                height="450" style="border:0; width: 100%;" allowfullscreen="true" loading="lazy"></iframe>
+        </div>
+    </div>
+</div>
+
+
+{% if messages %}
+{% for message in messages %}
+ {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+
+{% endfor %}
+
+{% endif %}
+
+
+
+<style>
+    .card-address {
+        min-height: 200px !important;
+    }
+
+    @media (max-width: 1000px) {
+        .card-address {
+            height: auto;
+        }
+    }
+</style>
+{% endblock body %}

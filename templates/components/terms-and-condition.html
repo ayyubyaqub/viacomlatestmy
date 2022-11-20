@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block canonical %}
+<link rel="canonical" href="https://viacomindia.com/terms-and-condition/{{terms_and_condition.slug}}" />
+{% endblock canonical %}
+{% load static %} {% block body %}
+<div class="container-fluid p-4 shadow border mb-3" style="border-radius: 35px;margin-top: 100px; background-color: var(--bs-gray-100);">
+    {{terms_and_condition.tems_and_condition | safe}}
+</div>
+{% endblock body %}

@@ -1,0 +1,749 @@
+{% extends "base.html" %}
+{% block canonical %}
+<link rel="canonical" href="https://viacomindia.com/creators" />
+{% endblock canonical %}
+{% load static %} {% block body %}
+
+<style>
+    h1 {
+        font-size: 32px;
+        line-height: 46px;
+        font-weight: 300;
+        margin-top: 84px;
+        text-align: center;
+    }
+
+    h1 b {
+        font-weight: 900;
+    }
+
+    h1 span {
+        display: block;
+        color: #3D7AF1;
+        font-size: 8rem;
+        line-height: 68px;
+        letter-spacing: -8px;
+        transform: rotate(-6.09deg);
+        font-family: 'Caveat', cursive;
+        font-weight: 400;
+        margin-left: -30px;
+    }
+
+    .top {
+        max-width: 1440px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 20px 36px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .top .container {
+        position: relative;
+    }
+
+    .top .image {
+        position: relative;
+        left: -40px;
+        margin-top: -180px;
+        z-index: 10;
+    }
+
+    .top .image img {
+        border-radius: 24px;
+        max-width: 70%;
+    }
+
+    .top .text.text1 {
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 26px;
+        background: #fff;
+        padding: 17px 20px 13px;
+        box-shadow: 0px 2px 48px rgba(0, 0, 0, 0.1);
+        border-radius: 16px;
+        width: 208px;
+        margin-left: auto;
+        margin-top: 30px;
+        position: relative;
+        z-index: 20;
+    }
+
+    .top .text.text2 {
+        font-size: 16px;
+        line-height: 26px;
+        background: #fff;
+        padding: 16px 24px 24px;
+        box-shadow: 0px 2px 48px rgba(0, 0, 0, 0.1);
+        border-radius: 24px;
+        position: relative;
+        margin-top: -200px;
+        z-index: 20;
+    }
+
+    .top .text.text2 b {
+        font-weight: 900;
+        font-size: 24px;
+        line-height: 34px;
+        margin-bottom: 8px;
+    }
+
+    .top .text.text2>div {
+        margin-bottom: 24px;
+    }
+
+    .about-page .brands {
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    .about-page .brands h2 {
+        width: auto;
+        max-width: auto;
+        margin-bottom: 12px;
+    }
+
+    .about-page div.brands ul {
+        padding: 0;
+    }
+
+    .video-cards {
+        background: #202020;
+        padding: 48px 0;
+        color: #fff;
+    }
+
+    .video-cards h2 {
+        text-align: center;
+        font-weight: 900;
+        font-size: 24px;
+        line-height: 34px;
+        margin-bottom: 12px;
+    }
+
+    .video-cards p {
+        margin-bottom: 30px;
+    }
+
+    .video-cards h2 span {
+        color: #3D7AF1;
+    }
+
+    .video-cards li {
+        margin-bottom: 18px;
+        padding: 0 9px;
+    }
+
+    .video-cards li .video_wrapper {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+    }
+
+    .video-cards li .video_wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 6px 6px 0 0;
+        z-index: 300;
+    }
+
+    .video-cards li .video_wrapper .image {
+        background-size: cover;
+        background-position: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 400;
+        cursor: pointer;
+    }
+
+    .video-cards li .video_wrapper .image img.play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .video-cards li .item {
+        background: #35353A;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .video-cards li .item h3 {
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 26px;
+        padding: 15px;
+    }
+
+    .creator_app {
+        overflow: hidden;
+        background-color: #202020;
+        padding-top: 24px;
+        padding-bottom: 24px;
+        position: relative;
+    }
+
+    .creator_app .icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .creator_app .text p {
+        color: #fff;
+        font-size: 24px;
+        line-height: 34px;
+        margin-top: 12px;
+        margin-bottom: 36px;
+        font-weight: 300;
+        max-width: 160px;
+    }
+
+    .creator_app .text p b {
+        font-weight: 900;
+    }
+
+    .creator_app .text a img {
+        width: 120px;
+        height: auto;
+    }
+
+    .creator_app .image {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: calc(100% - 260px);
+        background: #FAFAFA;
+    }
+
+    .creator_app .image img {
+        height: 100%;
+        width: auto;
+        margin-left: -130px;
+    }
+
+    .striped-sections section.locations {
+        padding: 50px 0;
+    }
+
+    section.description {
+        padding: 24px 0;
+        background: #EDEDED;
+    }
+
+    section.description h2 {
+        font-size: 24px;
+        line-height: 34px;
+        text-align: center;
+        margin-bottom: 16px;
+    }
+
+    section.description img {
+        width: 100%;
+        height: auto;
+        filter: drop-shadow(0px 2px 48px rgba(0, 0, 0, 0.1));
+        margin-bottom: 16px;
+    }
+
+    section.description p {
+        text-align: center;
+        font-size: 16px;
+        line-height: 26px;
+    }
+
+    section.locations {
+        padding-top: 36px;
+    }
+
+    section.locations h2 {
+        font-size: 24px;
+        line-height: 34px;
+    }
+
+    section.locations p {
+        font-size: 18px;
+        line-height: 28px;
+        max-width: 572px;
+        margin: 0 auto 36px;
+    }
+
+    section.locations ul.slick-slider {
+        padding: 0;
+    }
+
+    section.locations li {
+        background-size: cover;
+        background-position: center;
+        width: 390px;
+        height: 240px;
+        border-radius: 12px;
+        margin: 0 11px;
+        position: relative;
+    }
+
+    section.locations li a.link {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    section.locations li:before {
+        content: none;
+    }
+
+    section.locations li .buttons {
+        position: absolute;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+    }
+
+    section.locations .list2 li .buttons {
+        left: 12px;
+        right: auto;
+    }
+
+    section.locations li .buttons span {
+        background: rgba(7, 7, 7, 0.75);
+        border-radius: 20px;
+        font-size: 14px;
+        line-height: 24px;
+        padding: 4px 16px;
+        display: inline-block;
+        margin-right: 8px;
+        color: #fff;
+    }
+
+    section.locations li .buttons span:last-child {
+        margin-right: 0;
+    }
+
+    section.locations ul.list2 li .buttons span:last-child {
+        margin-right: 8px;
+    }
+
+    section.locations ul.list2 li .buttons span:first-child {
+        margin-right: 0;
+    }
+
+    @media only screen and (max-width : 767px) {
+        section.description p {
+            padding: 0 15px;
+        }
+
+        .top .image img {
+            border-radius: 24px;
+            max-width: 100%;
+        }
+    }
+
+    @media only screen and (min-width : 768px) {
+        .top .image img {
+            border-radius: 24px;
+            max-width: 70%;
+        }
+
+        .video-cards h2 {
+            font-size: 44px;
+            line-height: 58px;
+            max-width: 718px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .video-cards p {
+            font-size: 20px;
+            line-height: 28px;
+        }
+
+        .creator_app .image img {
+            margin-left: -110px;
+        }
+
+        section.description div.image {
+            padding: 0 30px;
+        }
+
+        section.description .container {
+            display: flex;
+        }
+
+        section.description h2 {
+            text-align: left;
+        }
+
+        section.description p {
+            text-align: left;
+            font-weight: 700;
+        }
+
+        section.description img {
+            margin-bottom: 0;
+        }
+    }
+
+    @media only screen and (min-width : 992px) {
+        .top {
+            padding-bottom: 64px;
+        }
+
+        .top .text.text1 {
+            width: 280px;
+            z-index: 40;
+        }
+
+        .top .image {
+            margin-top: -200px;
+            z-index: 20;
+        }
+
+        .top .text.text2 {
+            width: 604px;
+            font-size: 18px;
+            line-height: 28px;
+        }
+
+        .top .image {
+            margin-left: 45%;
+        }
+
+        h1 {
+            margin-top: 120px;
+        }
+
+        h1 span {
+            font-size: 286px;
+            line-height: 68px;
+            letter-spacing: -15px;
+            text-align: left;
+            margin-top: 50px;
+            position: relative;
+            z-index: 30;
+        }
+
+        .about-page div.brands p {
+            max-width: 556px;
+        }
+
+        .creator_app {
+            height: 539px;
+            padding-top: 69px;
+        }
+
+        .creator_app .icon {
+            width: 90px;
+            height: 90px;
+        }
+
+        .creator_app .text p {
+            font-size: 32px;
+            line-height: 46px;
+            max-width: 406px;
+            margin-top: 16px;
+            margin-bottom: 24px;
+        }
+
+        .creator_app .text a img {
+            width: 160px;
+        }
+
+        .creator_app .image {
+            width: calc(100% - 600px);
+        }
+
+        .creator_app .image img {
+            margin-left: -160px;
+        }
+
+        section.description {
+            padding: 48px 0;
+        }
+
+        section.description .container {
+            justify-content: space-between;
+        }
+
+        section.description h2 {
+            font-size: 44px;
+            line-height: 58px;
+            flex: 0 0 216px;
+        }
+
+        section.description div.text {
+            flex: 0 0 196px;
+            display: flex;
+            align-items: center;
+        }
+
+        section.description div.text p {
+            font-size: 18px;
+            line-height: 28px;
+        }
+
+        section.description img {
+            max-width: 732px;
+        }
+
+        section.locations {
+            padding-bottom: 20px;
+            padding-top: 48px;
+        }
+
+        section.locations h2 {
+            font-size: 44px;
+            line-height: 58px;
+        }
+
+        section.locations p {
+            font-size: 20px;
+            line-height: 28px;
+        }
+
+        section.locations ul.slick-slider {
+            margin-bottom: 44px;
+        }
+
+        section.locations li {
+            margin: 0 22px;
+        }
+    }
+
+    @media only screen and (min-width : 1200px) {
+        h1 span {
+            margin-left: 100px;
+        }
+
+        .top .text.text1 {
+            margin-right: 20px;
+        }
+    }
+
+    @media only screen and (min-width : 1281px) {
+        section.description {
+            padding: 76px 0;
+        }
+
+        section.description div.image {
+            padding: 0;
+        }
+    }
+
+    @media only screen and (min-width: 1440px) {
+        .top .text.text1 {
+            margin-right: 122px;
+        }
+
+        .top .text.text2 {
+            margin-left: 146px;
+            margin-top: -356px;
+            margin-bottom: 30px;
+        }
+
+        .creator_app .image {
+            text-align: right;
+            width: 800px;
+        }
+
+        section.description .container {
+            max-width: 1440px;
+        }
+    }
+
+    @media only screen and (min-width: 2120px) {
+        .about-page div.brands li {
+            height: 6vw;
+        }
+
+        section.locations li {
+            height: 12vw;
+        }
+    }
+</style>
+
+
+<div class="top mt-3">
+    <h1>
+        Be a <b>VIACOM INDIA</b> <span>Creator</span>
+    </h1>
+    <div class="text text1">
+        {{creator.textcard1}}
+    </div>
+    <div class="image">
+        <img src="{%if creator.image1 %} {{creator.image1.url}}{% endif %}">
+    </div>
+    <div class="text text2">
+        <b class="d-block">{{creator.textcard2_heading}}</b>
+        <div>
+            {{creator.textcard2 | safe}}
+        </div>
+        <a class="btn rounded btn-primary" href="/">Get started</a>
+    </div>
+</div>
+
+<section class="brands_slider pt-0">
+    <div class="container">
+        <h2 class="text-center fw-bold">
+            {{creator.textcard3_heading_black|safe}} <span>{{creator.textcard3_heading_blue|safe}}</span>
+        </h2>
+        <p class="text-center mb-0">
+            {{creator.textcard3|safe}}
+        </p>
+    </div>
+    <ul class="list-unstyled list1 first slick-initialized slick-slider">
+        </li>
+        </div>
+        </div>
+    </ul>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <video loop muted autoplay class="carouselImage" style="height: 40vh;">
+                <source src="{{creator.video1.url}}" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+</section>
+
+
+<div class="image">
+    <img src="{%if creator.image2 %} {{creator.image2.url}}{% endif %}">
+</div>
+
+
+<section class="locations">
+    <h2 class="text-center fw-bold"> {{creator.heading_black|safe}}<span class="d-block">{{creator.heading_blue|safe}}</span>
+    </h2>
+    <p class="text-center"> {{creator.description|safe}}</p>
+    <!-- <div class="container">
+        <div class=" carousel-inner">
+            <div class="carousel-item active">
+                <img src="{%if creator.video_image2 %} {{creator.video_image2.url}}{% endif %}">
+                <img src="{%if creator.video_image3 %} {{creator.video_image3.url}}{% endif %}">
+                <img src="{%if creator.video_image4 %} {{creator.video_image4.url}}{% endif %}">
+                <img src="{%if creator.video_image5 %} {{creator.video_image5.url}}{% endif %}">
+                <img src="{%if creator.video_image6 %} {{creator.video_image6.url}}{% endif %}">
+                <img src="{%if creator.video_image7 %} {{creator.video_image7.url}}{% endif %}">
+            </div>
+        </div>
+    </div> -->
+    <div class="image-slideshow">
+        <div class="mover-1"
+            style="background:url({%if creator.video_image2 %} {{creator.video_image2.url}}{% endif %})"></div>
+    </div>
+    <div class="image-slideshow">
+        <div class="mover-2"
+            style="background:url({%if creator.video_image3 %} {{creator.video_image3.url}}{% endif %})"></div>
+    </div>
+    <div class="image-slideshow">
+        <div class="mover-1"
+            style="background:url({%if creator.video_image4 %} {{creator.video_image4.url}}{% endif %})"></div>
+    </div>
+    <div class="image-slideshow">
+        <div class="mover-2"
+            style="background:url({%if creator.video_image5 %} {{creator.video_image5.url}}{% endif %})"></div>
+    </div>
+    <div class="image-slideshow">
+        <div class="mover-1"
+            style="background:url({%if creator.video_image6 %} {{creator.video_image6.url}}{% endif %})"></div>
+    </div>
+    <div class="image-slideshow">
+        <div class="mover-2"
+            style="background:url({%if creator.video_image7 %} {{creator.video_image7.url}}{% endif %})"></div>
+    </div>
+</section>
+
+<style>
+    .image-slideshow {
+        height: 289px;
+        width: 100%;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .image-slideshow .mover-1 {
+        height: 270px;
+        width: 5000px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translate3d(0, 0, 0);
+        background-repeat: no-repeat;
+        animation: moveSlideshow 60s linear infinite;
+    }
+
+    .image-slideshow .mover-2 {
+        height: 270px;
+        width: 5000px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate3d(0, 0, 0);
+        background-repeat: no-repeat;
+        animation: moveSlideshowReverse 60s linear infinite;
+    }
+
+    @keyframes moveSlideshow {
+        100% {
+            transform: translateX(-66.6666%);
+        }
+    }
+
+    @keyframes moveSlideshowReverse {
+        100% {
+            transform: translateX(66.6666%);
+        }
+    }
+
+    @media (max-width: 1000px) {
+
+        .image-slideshow {
+            height: 110px;
+            width: 100%;
+        }
+
+        .image-slideshow .mover-1,
+        .image-slideshow .mover-2 {
+            height: 95px;
+            background-size: 3000px !important;
+        }
+    }
+</style>
+
+
+
+<div class="container">
+    <div class="d-flex mb-3">
+        <img style="width:100px;" class="mx-auto pt-5"
+            src="{% static 'images/logos/Viacom India Logo Circle bv.png' %}">
+    </div>
+    <div class="d-flex mb-3">
+        <video class="w-100 mx-auto" autoplay="" loop="" muted="">
+            <source src="{%if creator.video_bottum %}{{creator.video_bottum.url}} {%endif%}">
+        </video>
+    </div>
+    <p class="fw-light text-center h1">Start <span class="fw-bold">creating</span> amazing videos with us.</p>
+    <div class="d-flex mb-3 w-100 pt-5">
+        <button class="mx-auto m-3 btn btn-lg btn-primary" onclick="window.location.href='/create_video/#'"><svg
+                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="feather feather-plus">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg> Create video</button>
+    </div>
+</div>
+
+
+
+{% endblock body %}

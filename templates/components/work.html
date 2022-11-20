@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+{% block canonical %}
+<link rel="canonical" href="https://viacomindia.com/works" />
+{% endblock canonical %}
+{% load static %} {% block body %}
+<div id="myCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="bg-blurry">
+                <video loop="" muted="" autoplay="" class="carouselImage">
+                    <source src="{{our_woks.video.url}}" type="video/mp4">
+                </video>
+            </div>
+            <div class="container">
+                <div class="carousel-caption text-center bg-blurry p-3 rounded">
+                    <div class="d-flex">
+                        <div class="mx-auto">
+                            <h1 class="display-3 border-5 py-3 text-uppercase" style="letter-spacing: 10px;">
+                                {{our_woks.heading1}}
+                            </h1>
+                        </div>
+                    </div>
+                    <a href="#scrollDown" class="text-white text-decoration-none text-uppercase"
+                        style="letter-spacing: 10px;">
+                        <p class="h2">{{our_woks.heading2}}</p>
+                        <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-chevrons-down">
+                                <polyline points="7 13 12 18 17 13"></polyline>
+                                <polyline points="7 6 12 11 17 6"></polyline>
+                            </svg></p>
+                    </a>
+                    <div id="scrollDown"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid my-5">
+    <div class="row g-4 row-cols-md-3 row-cols-1 justify-content-center" id="resultsHere">
+
+
+        {%for youtubevideo in videolinks %}
+
+        <div class="col">
+            <a href="#!" class="text-white text-decoration-none" data-bs-toggle="modal" data-bs-target="#ourWorkModel"
+                data-youtube-video-link="{{youtubevideo.video_link}}"
+                onclick="changeYoutubeVIdeo(this.getAttribute('data-youtube-video-link'));">
+                <div class="shadow border onHoverBackgroundChange"
+                    style="height:100%;border-radius: 15px;background-color:#ededed;">
+                    <div class="slide-up">
+                        <div class="make-height-auto-yt-video box" style="border-top-left-radius:15px;border-top-right-radius:15px">
+                            <img src="{%if youtubevideo.image %}{{youtubevideo.image.url}}{%endif%}"
+                                class="w-100 boxImg ourWorkImg"
+                                style="height:350px;border-top-left-radius:15px;border-top-right-radius:15px">
+                            <div class="make-height-auto-yt-video overlay3"
+                                style="border-top-left-radius:15px;border-top-right-radius:15px">
+                                <div class="justify-content-center align-items-center d-flex h-100"
+                                    style="height:300px;border-top-left-radius:15px;border-top-right-radius:15px">
+                                    <div class="mx-auto">
+                                        <i
+                                            class="fas fa-play border border-light bg-light border-2 text-dark rounded-circle p-3 fa-2x"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card_body">
+                        <p style="font-size: 12px;" class="mt-2 mb-0 pb-1 text-dark text-muted px-3">
+                            {{youtubevideo.title}}</p>
+                        <p style="font-size: 14px;" class="fw-bold text-dark px-3">{{youtubevideo.brief}}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {%endfor%}
+        <div class="modal fade" id="ourWorkModel" tabindex="-1" aria-labelledby="ourWorkModelLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl rounded-5">
+                <div class="position-absolute top-0 end-0">
+                    <button style="cursor: pointer;"
+                        class="btn border-danger border-2 bg-light text-danger rounded-circle"><i
+                            class="fas fa-close"></i></button>
+                </div>
+                <div class="modal-content" style="border-radius:15px;">
+                    <iframe id="youtube_video_here" style="width:100%;height:78vh;" src="" title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen=""></iframe>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="my-5 pb-5">
+        <a href="https://www.youtube.com/c/ViacomIndiatv/videos" target="_blank">
+            <img src="{{our_woks.image.url}}" class="w-100 d-none d-md-block">
+            <img src="{{our_woks.image_mobile.url}}" class="w-100 d-md-none d-block">
+        </a>
+    </div>
+</div>
+
+
+<!-- section for testimonial -->
+<div class="container a-better-bottom-margin">
+    <div id="clientsTestimonial" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#clientsTestimonial" data-bs-slide-to="0" class=""
+                aria-label="Slide 0"></button>
+            <button type="button" data-bs-target="#clientsTestimonial" data-bs-slide-to="1" class=""
+                aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#clientsTestimonial" data-bs-slide-to="2" class="active"
+                aria-label="Slide 2" aria-current="true"></button>
+        </div>
+        <div class="carousel-inner">
+            <div style="min-height: 600px;" class="carousel-item" data-bs-interval="3000">
+                <div class="carousel-caption h-100 d-flex align-items-center">
+                    <div class="mx-auto">
+                        <img src="{{carousels.0.image.url}}" alt="{{carousels.0.name}}"
+                            style="width: 100px; height:100px;" class="rounded-circle">
+                        <h3 class="text-dark">{{carousels.0.name}}</h3>
+                        <p class="text-muted"><small><i>{{carousels.0.designation}}</i></small>
+                        </p>
+                        <p><small>{{carousels.0.Description}}</small></p>
+                    </div>
+                </div>
+            </div>
+            <div style="min-height: 600px;" class="carousel-item" data-bs-interval="3000">
+                <div class="carousel-caption h-100 d-flex align-items-center">
+                    <div class="mx-auto">
+                        <img src="{{carousels.2.image.url}}" alt="{{carousels.0.name}}"
+                            style="width: 100px; height:100px;" class="rounded-circle">
+                        <h3 class="text-dark">{{carousels.1.name}}</h3>
+                        <p class="text-muted"><small><i>{{carousels.1.designation}}</i></small></p>
+                        <p><small>{{carousels.1.Description}}</small></p>
+                    </div>
+                </div>
+            </div>
+            <div style="min-height: 600px;" class="carousel-item active" data-bs-interval="3000">
+                <div class="carousel-caption h-100 d-flex align-items-center">
+                    <div class="mx-auto">
+                        <img src="{{carousels.1.image.url}}" alt="Dr. A.B Wani" style="width: 100px; height:100px;"
+                            class="rounded-circle">
+                        <h3 class="text-dark">{{carousels.2.name}}</h3>
+                        <p class="text-muted"><small><i>{{carousels.2.designation}}</i></small></p>
+                        <p><small>{{carousels.2.Description}}</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#clientsTestimonial" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#clientsTestimonial" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <hr>
+</div>
+<!-- section for testimonial -->
+</div>
+
+
+{% endblock body %}

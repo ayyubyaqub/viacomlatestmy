@@ -1,0 +1,909 @@
+{% extends "base.html" %}
+{% block canonical %}
+<link rel="canonical" href="https://viacomindia.com/create_video" />
+{% endblock canonical %}
+{% load static %} {% block body %}
+<div id="myCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="bg-blurry">
+                <video loop="" muted="" autoplay="" class="carouselImage">
+                    <source src="{{create_video.video.url}}" type="video/mp4">
+                </video>
+            </div>
+            <div class="container">
+                <div class="carousel-caption text-center bg-blurry p-3 rounded">
+                    <div class="d-flex">
+                        <div class="mx-auto">
+                            <h1 class="display-3 border-5 py-3 text-uppercase" style="letter-spacing: 10px;">
+                                {{create_video.title}}
+                            </h1>
+                        </div>
+                    </div>
+                    <a href="#scrollDown" class="text-white text-decoration-none text-uppercase"
+                        style="letter-spacing: 10px;">
+                        <p class="h2">{{create_video.subtitle}}</p>
+                        <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-chevrons-down">
+                                <polyline points="7 13 12 18 17 13"></polyline>
+                                <polyline points="7 6 12 11 17 6"></polyline>
+                            </svg></p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mb-5 pb-5">
+    <div class="container-fluid pt-3">
+        <!-- section for brands starts -->
+        <div class="a-better-bottom-margin">
+            <div class="row justify-content-center">
+                {%for i in create_video.createvideoimage.all %}
+                <div class="col-auto mx-xl-4 mx-none col-sm-3 col-lg-auto my-md-3"><img class="brand-monochrome"
+                        src="{{i.image.url}}"></div>
+                {%endfor%}
+            </div>
+            <div id="contact"></div>
+            <div id="scrollDown"></div>
+        </div>
+
+        <!-- section for brands ends -->
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-9 border border-1 shadow rounded-3 px-0 pb-4">
+                <div class="bg-dark text-light w-100 rounded-3 pt-4 pb-3">
+                    <h3 class="text-center">Create video</h3>
+                    <p class="text-center">
+                        <small>Fill these required details.</small>
+                    </p>
+                </div>
+                <form method="post" class="container mt-5" action="{% url 'create_video' %}">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <legend>Your Details</legend>
+                        <p class="text-muted"><small>Add brand and personal details</small></p>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-6 mb-3">
+                                <label for="brand_name" class="form-label">Brand Name / Company Name</label>
+                                <input name="brand_name" type="text" class="form-control" id="brand_name"
+                                    placeholder="Add your brand’s name" required="">
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <label for="website" class="form-label">Website</label>
+                                <input name="website" type="text" class="form-control" id="website"
+                                    placeholder="Add your brand’s website">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 mb-3">
+                                <label for="first_name" class="form-label">First name</label>
+                                <input name="first_name" type="text" class="form-control" id="first_name"
+                                    placeholder="Your first name" required="">
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <label for="last_name" class="form-label">Last name</label>
+                                <input name="last_name" type="text" class="form-control" id="last_name"
+                                    placeholder="Your last name">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input name="email" type="email" class="form-control" id="email"
+                                    placeholder="you@email.com" required="">
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <label for="phone" class="form-label">Phone/Mobile</label>
+                                <input name="phone" type="text" class="form-control" id="phone" placeholder="123456789">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <legend>Project Details</legend>
+                        <p class="text-muted"><small>Type of project and an overview that communicates your
+                                vision.</small></p>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-6 mb-2">
+                                <label for="video_categories" class="form-label">Choose from our curated
+                                    marketplace</label>
+                                <input name="video_categories" type="text" class="form-control" id="video_categories"
+                                    placeholder="Video types" list="allCategories">
+                                <datalist id="allCategories">
+                                    <option value="Brand Video">Brand Video</option>
+                                    <option value="Brand Promotion">Brand Promotion</option>
+                                    <option value="Brand Awareness">Brand Awareness</option>
+                                    <option value="Brand Activation">Brand Activation</option>
+                                    <option value="Brand Experiences">Brand Experiences</option>
+                                    <option value="Brand Communication">Brand Communication</option>
+                                    <option value="Campaign Video">Campaign Video</option>
+                                    <option value="Brand Viral Video">Brand Viral Video</option>
+                                    <option value="Brand Inspiration">Brand Inspiration</option>
+                                    <option value="Campaign Integration">Campaign Integration</option>
+                                    <option value="Shoppable Music Video">Shoppable Music Video</option>
+                                    <option value="Brand Talk">Brand Talk</option>
+                                    <option value="Brand Loyalty">Brand Loyalty</option>
+                                    <option value="Corporate Video">Corporate Video</option>
+                                    <option value="Corporate Video">Corporate Video</option>
+                                    <option value="Company Profile">Company Profile</option>
+                                    <option value="Company Statement">Company Statement</option>
+                                    <option value="Company Image Building">Company Image Building</option>
+                                    <option value="Business Story">Business Story</option>
+                                    <option value="Induction Video">Induction Video</option>
+                                    <option value="Announcement Videos">Announcement Videos</option>
+                                    <option value="Investor Pitch">Investor Pitch</option>
+                                    <option value="Company Culture">Company Culture</option>
+                                    <option value="Csr &amp; Causes">Csr &amp; Causes</option>
+                                    <option value="Instruction &amp; Safety">Instruction &amp; Safety</option>
+                                    <option value="Crisis Communication">Crisis Communication</option>
+                                    <option value="Advertising">Advertising</option>
+                                    <option value="TV Commercials/Ad Film">TV Commercials/Ad Film</option>
+                                    <option value="Infomercials">Infomercials</option>
+                                    <option value="Online Commercials">Online Commercials</option>
+                                    <option value="Cinema Advertising">Cinema Advertising</option>
+                                    <option value="Radio Commercials">Radio Commercials</option>
+                                    <option value="Product Placement">Product Placement</option>
+                                    <option value="Digital Signboard">Digital Signboard</option>
+                                    <option value="Digital Media Ads">Digital Media Ads</option>
+                                    <option value="Digital Display">Digital Display</option>
+                                    <option value="Digital Media Ads">Digital Media Ads</option>
+                                    <option value="Facebook Video Ads">Facebook Video Ads</option>
+                                    <option value="Instagram Video Ads">Instagram Video Ads</option>
+                                    <option value="Youtube Video Ads">Youtube Video Ads</option>
+                                    <option value="Linkedin Video Ads">Linkedin Video Ads</option>
+                                    <option value="Influencer Market Place Video Ads">Influencer Market Place Video Ads
+                                    </option>
+                                    <option value="Snapchat Video Ads">Snapchat Video Ads</option>
+                                    <option value="OTT Platform Video Ads">OTT Platform Video Ads</option>
+                                    <option value="Content Marketing Video">Content Marketing Video</option>
+                                    <option value="Product Video">Product Video</option>
+                                    <option value="Product Promotion">Product Promotion</option>
+                                    <option value="Product Portfolio">Product Portfolio</option>
+                                    <option value="Product Demo">Product Demo</option>
+                                    <option value="Product Explainer">Product Explainer</option>
+                                    <option value="Product Launch">Product Launch</option>
+                                    <option value="Product Spotlight">Product Spotlight</option>
+                                    <option value="Product Teasers">Product Teasers</option>
+                                    <option value="Product Inspiration">Product Inspiration</option>
+                                    <option value="App/Software Demo">App/Software Demo</option>
+                                    <option value="Customer Support">Customer Support</option>
+                                    <option value="Product Testing">Product Testing</option>
+                                    <option value="Market Influencing">Market Influencing</option>
+                                    <option value="Stop Motion">Stop Motion</option>
+                                    <option value="Reviews &amp; Unboxing">Reviews &amp; Unboxing</option>
+                                    <option value="Story Video">Story Video</option>
+                                    <option value="Brand Story">Brand Story</option>
+                                    <option value="Product Story">Product Story</option>
+                                    <option value="Company Story">Company Story</option>
+                                    <option value="Brand Short Film">Brand Short Film</option>
+                                    <option value="Customer Story">Customer Story</option>
+                                    <option value="People Stories">People Stories</option>
+                                    <option value="Partner Story">Partner Story</option>
+                                    <option value="Ngo Stories">Ngo Stories</option>
+                                    <option value="Success Story">Success Story</option>
+                                    <option value="Work Life Story">Work Life Story</option>
+                                    <option value="Leader Story">Leader Story</option>
+                                    <option value="Employees Story">Employees Story</option>
+                                    <option value="A Day in a Life of Story">A Day in a Life of Story</option>
+                                    <option value="Startup Story">Startup Story</option>
+                                    <option value="Team Story Video">Team Story Video</option>
+                                    <option value="Mega Story">Mega Story</option>
+                                    <option value="Testimonial">Testimonial</option>
+                                    <option value="Customer Testimonial">Customer Testimonial</option>
+                                    <option value="Partner Testimonial">Partner Testimonial</option>
+                                    <option value="Product Testimonial">Product Testimonial</option>
+                                    <option value="Member Testimonial">Member Testimonial</option>
+                                    <option value="Talking Heads">Talking Heads</option>
+                                    <option value="Spokesperson">Spokesperson</option>
+                                    <option value="Thanking Audience">Thanking Audience</option>
+                                    <option value="Brand Testimonial">Brand Testimonial</option>
+                                    <option value="Subject Matter Expert">Subject Matter Expert</option>
+                                    <option value="Claims We Make">Claims We Make</option>
+                                    <option value="Interview">Interview</option>
+                                    <option value="Human Resources">Human Resources</option>
+                                    <option value="Onboarding Videos">Onboarding Videos</option>
+                                    <option value="Company Culture">Company Culture</option>
+                                    <option value="Employee Talking Head">Employee Talking Head</option>
+                                    <option value="Talent Acquisition">Talent Acquisition</option>
+                                    <option value="Staff Communication">Staff Communication</option>
+                                    <option value="Meet The Team">Meet The Team</option>
+                                    <option value="Stakeholder Views">Stakeholder Views</option>
+                                    <option value="Profile Video">Profile Video</option>
+                                    <option value="Job Listing">Job Listing</option>
+                                    <option value="A Day In A Life Of">A Day In A Life Of</option>
+                                    <option value="Offsite Video">Offsite Video</option>
+                                    <option value="Hr Video Series">Hr Video Series</option>
+                                    <option value="Farewell Video">Farewell Video</option>
+                                    <option value="Sales and Marketing">Sales and Marketing</option>
+                                    <option value="Sales Videos">Sales Videos</option>
+                                    <option value="Marketing Videos">Marketing Videos</option>
+                                    <option value="Customer Relationship">Customer Relationship</option>
+                                    <option value="Customer Support Video">Customer Support Video</option>
+                                    <option value="Internal Communication">Internal Communication</option>
+                                    <option value="External Communication">External Communication</option>
+                                    <option value="Sales Pitch Videos">Sales Pitch Videos</option>
+                                    <option value="Sales Talking Head">Sales Talking Head</option>
+                                    <option value="Landing Page Videos">Landing Page Videos</option>
+                                    <option value="(Kol) Key Opinion Leaders">(Kol) Key Opinion Leaders</option>
+                                    <option value="Digital Marketing Videos">Digital Marketing Videos</option>
+                                    <option value="Case Study">Case Study</option>
+                                    <option value="Brand Case Study">Brand Case Study</option>
+                                    <option value="Product Case Study">Product Case Study</option>
+                                    <option value="Software Case Study">Software Case Study</option>
+                                    <option value="Medical Case Study">Medical Case Study</option>
+                                    <option value="Project Case Study">Project Case Study</option>
+                                    <option value="Research Case Study">Research Case Study</option>
+                                    <option value="Training &amp; Safety">Training &amp; Safety</option>
+                                    <option value="Health &amp; Safety Training">Health &amp; Safety Training</option>
+                                    <option value="Dojo Room Training">Dojo Room Training</option>
+                                    <option value="Corporate Training">Corporate Training</option>
+                                    <option value="Sales Training">Sales Training</option>
+                                    <option value="Technical Training">Technical Training</option>
+                                    <option value="Management Training">Management Training</option>
+                                    <option value="Process-Training">Process-Training</option>
+                                    <option value="VR/AR Training Video">VR/AR Training Video</option>
+                                    <option value="E-Learning  Video">E-Learning Video</option>
+                                    <option value="Help &amp; How To">Help &amp; How To</option>
+                                    <option value="Product Training">Product Training</option>
+                                    <option value="Software Simulation">Software Simulation</option>
+                                    <option value="Software/Saas Tutorial">Software/Saas Tutorial</option>
+                                    <option value="Induction Training">Induction Training</option>
+                                    <option value="Subject Matter Expert">Subject Matter Expert</option>
+                                    <option value="Event Coverage">Event Coverage</option>
+                                    <option value="Corporate Event Coverage">Corporate Event Coverage</option>
+                                    <option value="Trade Show/Seminars/Expo">Trade Show/Seminars/Expo</option>
+                                    <option value="Award Ceremony">Award Ceremony</option>
+                                    <option value="Product Launch Event">Product Launch Event</option>
+                                    <option value="Conferences Coverage">Conferences Coverage</option>
+                                    <option value="Pre-Event Promo">Pre-Event Promo</option>
+                                    <option value="After Event Promo">After Event Promo</option>
+                                    <option value="Vox Pops Videos">Vox Pops Videos</option>
+                                    <option value="Highlights Capsule">Highlights Capsule</option>
+                                    <option value="Event Documentation">Event Documentation</option>
+                                    <option value="Event Opener Video">Event Opener Video</option>
+                                    <option value="Event Bts &amp; Byte">Event Bts &amp; Byte</option>
+                                    <option value="360° Live Event Coverage">360° Live Event Coverage</option>
+                                    <option value="Webinar">Webinar</option>
+                                    <option value="Virtual Event">Virtual Event</option>
+                                    <option value="Event Marketing">Event Marketing</option>
+                                    <option value="PSA Video">PSA Video</option>
+                                    <option value="Fashion &amp; Lifestyle">Fashion &amp; Lifestyle</option>
+                                    <option value="Beauty &amp; Wellness">Beauty &amp; Wellness</option>
+                                    <option value="Fashion &amp; Lifestyle">Fashion &amp; Lifestyle</option>
+                                    <option value="Health &amp; Personal Care">Health &amp; Personal Care</option>
+                                    <option value="Fashion Teaser">Fashion Teaser</option>
+                                    <option value="Fashion Show Capsule">Fashion Show Capsule</option>
+                                    <option value="Latest Collection Promo">Latest Collection Promo</option>
+                                    <option value="Sports Shoes &amp; Activewear">Sports Shoes &amp; Activewear</option>
+                                    <option value="Sports Video">Sports Video</option>
+                                    <option value="Fashion- Bts Videos">Fashion- Bts Videos</option>
+                                    <option value="Lookbook">Lookbook</option>
+                                    <option value="Nutrition &amp; Fitness Video">Nutrition &amp; Fitness Video</option>
+                                    <option value="Promo &amp; Teaser">Promo &amp; Teaser</option>
+                                    <option value="Corporate Promo">Corporate Promo</option>
+                                    <option value="Product Launch Promo">Product Launch Promo</option>
+                                    <option value="Fashion &amp; Lifestyle Promo">Fashion &amp; Lifestyle Promo</option>
+                                    <option value="Virtual Event Promo">Virtual Event Promo</option>
+                                    <option value="Event Promo">Event Promo</option>
+                                    <option value="Corporate Event/Party Promo">Corporate Event/Party Promo</option>
+                                    <option value="Product Promo">Product Promo</option>
+                                    <option value="Food &amp; Beverages Promo">Food &amp; Beverages Promo</option>
+                                    <option value="Fashion Teaser &amp; Promo">Fashion Teaser &amp; Promo</option>
+                                    <option value="Highlight Capsule">Highlight Capsule</option>
+                                    <option value="Latest Collection Promo">Latest Collection Promo</option>
+                                    <option value="Pre-Event Promo">Pre-Event Promo</option>
+                                    <option value="After Event Promo">After Event Promo</option>
+                                    <option value="Fashion Show Capsule">Fashion Show Capsule</option>
+                                    <option value="Home Appliances Teaser">Home Appliances Teaser</option>
+                                    <option value="Digital Media Content">Digital Media Content</option>
+                                    <option value="Web Marketing Video">Web Marketing Video</option>
+                                    <option value="Vertical Videos">Vertical Videos</option>
+                                    <option value="Digital Campaign">Digital Campaign</option>
+                                    <option value="Promotion &amp; Buzz">Promotion &amp; Buzz</option>
+                                    <option value="Behind The Scenes">Behind The Scenes</option>
+                                    <option value="Webseries">Webseries</option>
+                                    <option value="Ultimate Resurrection Act">Ultimate Resurrection Act</option>
+                                    <option value="PR Content Video">PR Content Video</option>
+                                    <option value="Shoppable Music Video">Shoppable Music Video</option>
+                                    <option value="Feature Video (Review)">Feature Video (Review)</option>
+                                    <option value="People Profile">People Profile</option>
+                                    <option value="Interview/Q&amp;A">Interview/Q&amp;A</option>
+                                    <option value="Employee Profile">Employee Profile</option>
+                                    <option value="Speaker Video">Speaker Video</option>
+                                    <option value="Profile Management">Profile Management</option>
+                                    <option value="Motivational Video">Motivational Video</option>
+                                    <option value="People Story Video">People Story Video</option>
+                                    <option value="Public Relation">Public Relation</option>
+                                    <option value="Press Release Video">Press Release Video</option>
+                                    <option value="PR Image Building Video">PR Image Building Video</option>
+                                    <option value="Giveaway Videos">Giveaway Videos</option>
+                                    <option value="PR Story Coverage Video">PR Story Coverage Video</option>
+                                    <option value="Advocacy Campaign Video">Advocacy Campaign Video</option>
+                                    <option value="Reinforce Brand Values">Reinforce Brand Values</option>
+                                    <option value="Political Campaign Video">Political Campaign Video</option>
+                                    <option value="Company News">Company News</option>
+                                    <option value="Social Cause Video">Social Cause Video</option>
+                                    <option value="Startup &amp; Scaleups">Startup &amp; Scaleups</option>
+                                    <option value="PR &amp; Media Kit">PR &amp; Media Kit</option>
+                                    <option value="Product Promotion Kit">Product Promotion Kit</option>
+                                    <option value="Branding Kit">Branding Kit</option>
+                                    <option value="Invester Pitch">Invester Pitch</option>
+                                    <option value="60 Second Series">60 Second Series</option>
+                                    <option value="Startup Narrative">Startup Narrative</option>
+                                    <option value="Brand Integration">Brand Integration</option>
+                                    <option value="User Inspiration Use Cases">User Inspiration Use Cases</option>
+                                    <option value="Scaleup's  Videos">Scaleup's Videos</option>
+                                    <option value="Graphics &amp; Animation">Graphics &amp; Animation</option>
+                                    <option value="Stop Motion Animation">Stop Motion Animation</option>
+                                    <option value="Mobile App">Mobile App</option>
+                                    <option value="Commercials /Ads Video">Commercials /Ads Video</option>
+                                    <option value="Live-Action with Track Elements">Live-Action with Track Elements
+                                    </option>
+                                    <option value="Infographic Animation">Infographic Animation</option>
+                                    <option value="Cutout Animation">Cutout Animation</option>
+                                    <option value="Animation With Images">Animation With Images</option>
+                                    <option value="Whiteboard Animation">Whiteboard Animation</option>
+                                    <option value="Screencast">Screencast</option>
+                                    <option value="Explainer">Explainer</option>
+                                    <option value="2D Motion Graphics">2D Motion Graphics</option>
+                                    <option value="2D Character Animation">2D Character Animation</option>
+                                    <option value="2.5D Animation Explainer">2.5D Animation Explainer</option>
+                                    <option value="3D Animation Explainer">3D Animation Explainer</option>
+                                    <option value="Isometric Explainer">Isometric Explainer</option>
+                                    <option value="Product Feature Explainer">Product Feature Explainer</option>
+                                    <option value="Professional Services Explainer">Professional Services Explainer
+                                    </option>
+                                    <option value="Technology Explainer">Technology Explainer</option>
+                                    <option value="Software Demo Explainer">Software Demo Explainer</option>
+                                    <option value="Stock Footage Explainer">Stock Footage Explainer</option>
+                                    <option value="Typography Explainer">Typography Explainer</option>
+                                    <option value="Presentation Video">Presentation Video</option>
+                                    <option value="Product Presentation">Product Presentation</option>
+                                    <option value="Corporate Presentation">Corporate Presentation</option>
+                                    <option value="Sales Presentation">Sales Presentation</option>
+                                    <option value="Business Presentation">Business Presentation</option>
+                                    <option value="Project Presentation">Project Presentation</option>
+                                    <option value="Investor Pitch">Investor Pitch</option>
+                                    <option value="Project Commissioning">Project Commissioning</option>
+                                    <option value="Non Profit NGO">Non Profit NGO</option>
+                                    <option value="NGOs Profile Video">NGOs Profile Video</option>
+                                    <option value="Industry Bodies &amp; Associations">Industry Bodies &amp;
+                                        Associations</option>
+                                    <option value="Societies &amp; Trusts">Societies &amp; Trusts</option>
+                                    <option value="Fundraising Videos">Fundraising Videos</option>
+                                    <option value="Thank You Video">Thank You Video</option>
+                                    <option value="Meet The Team">Meet The Team</option>
+                                    <option value="Charity Videos">Charity Videos</option>
+                                    <option value="Inspiration &amp; Action">Inspiration &amp; Action</option>
+                                    <option value="Behind The Scenes">Behind The Scenes</option>
+                                    <option value="FAQ Video">FAQ Video</option>
+                                    <option value="Brand FAQ Videos">Brand FAQ Videos</option>
+                                    <option value="Product FAQ Videos">Product FAQ Videos</option>
+                                    <option value="Services FAQ">Services FAQ</option>
+                                    <option value="Sales &amp; Marketing FAQ">Sales &amp; Marketing FAQ</option>
+                                    <option value="Website FAQ">Website FAQ</option>
+                                    <option value="App &amp; Software FAQ">App &amp; Software FAQ</option>
+                                    <option value="60 Seconds">60 Seconds</option>
+                                    <option value="Corporate Series">Corporate Series</option>
+                                    <option value="Brand Series">Brand Series</option>
+                                    <option value="Product Series">Product Series</option>
+                                    <option value="Startup Series">Startup Series</option>
+                                    <option value="Business Series">Business Series</option>
+                                    <option value="Fashion Series">Fashion Series</option>
+                                    <option value="Personal Care Series">Personal Care Series</option>
+                                    <option value="Beauty &amp; Grooming Series">Beauty &amp; Grooming Series</option>
+                                    <option value="Accessories Series">Accessories Series</option>
+                                    <option value="Appliances Series">Appliances Series</option>
+                                    <option value="Clothing Series">Clothing Series</option>
+                                    <option value="Social Media Content Series">Social Media Content Series</option>
+                                    <option value="360° and VR">360° and VR</option>
+                                    <option value="360° Corporate Video">360° Corporate Video</option>
+                                    <option value="360° Real Estate Video Tour">360° Real Estate Video Tour</option>
+                                    <option value="360° Hotels &amp; Resorts Tour">360° Hotels &amp; Resorts Tour
+                                    </option>
+                                    <option value="360° Hospital Tour">360° Hospital Tour</option>
+                                    <option value="360° Factory Tour">360° Factory Tour</option>
+                                    <option value="360° Office Tour">360° Office Tour</option>
+                                    <option value="360° Sports &amp; Fitness Facilities Tour">360° Sports &amp; Fitness
+                                        Facilities Tour</option>
+                                    <option value="360° Club &amp; Lounges Tour">360° Club &amp; Lounges Tour</option>
+                                    <option value="360° Warehouse Tour">360° Warehouse Tour</option>
+                                    <option value="360° Showroom Tour">360° Showroom Tour</option>
+                                    <option value="360° School/College Tour">360° School/College Tour</option>
+                                    <option value="360° Laboratory Tour">360° Laboratory Tour</option>
+                                    <option value="360° Monuments &amp; Places Tour">360° Monuments &amp; Places Tour
+                                    </option>
+                                    <option value="360° Google Street View">360° Google Street View</option>
+                                    <option value="360° Training &amp; Education">360° Training &amp; Education</option>
+                                    <option value="360° Virtual Reality Video">360° Virtual Reality Video</option>
+                                    <option value="Drone Video">Drone Video</option>
+                                    <option value="Drone Aerial Videography">Drone Aerial Videography</option>
+                                    <option value="Drone Aerial Photography">Drone Aerial Photography</option>
+                                    <option value="Drone Event Coverage">Drone Event Coverage</option>
+                                    <option value="Drone Real Estate Tour">Drone Real Estate Tour</option>
+                                    <option value="Drone Corporate Tour">Drone Corporate Tour</option>
+                                    <option value="Drone Warehouse Tour">Drone Warehouse Tour</option>
+                                    <option value="Drone Factory Tour">Drone Factory Tour</option>
+                                    <option value="Drone Space &amp; Office Tour">Drone Space &amp; Office Tour</option>
+                                    <option value="Livestreaming">Livestreaming</option>
+                                    <option value="Live Streaming Event">Live Streaming Event</option>
+                                    <option value="Live Streaming Conferences">Live Streaming Conferences</option>
+                                    <option value="Live Product Demonstration">Live Product Demonstration</option>
+                                    <option value="Live 360° Streaming">Live 360° Streaming</option>
+                                    <option value="Live Social Streaming">Live Social Streaming</option>
+                                    <option value="Live Product Launch">Live Product Launch</option>
+                                    <option value="Live Process Video">Live Process Video</option>
+                                    <option value="Live Content Studio Services">Live Content Studio Services</option>
+                                    <option value="Webinars">Webinars</option>
+                                    <option value="Live Announcement">Live Announcement</option>
+                                    <option value="Photoshoot">Photoshoot</option>
+                                    <option value="Brand Photoshoot">Brand Photoshoot</option>
+                                    <option value="Product Photoshoot">Product Photoshoot</option>
+                                    <option value="Corporate Photoshoot">Corporate Photoshoot</option>
+                                    <option value="Commercial Photoshoot">Commercial Photoshoot</option>
+                                    <option value="Product Packshot">Product Packshot</option>
+                                    <option value="Advertising Photoshoot">Advertising Photoshoot</option>
+                                    <option value="Activewear &amp; Fashion">Activewear &amp; Fashion</option>
+                                    <option value="Real Estate Photoshoot">Real Estate Photoshoot</option>
+                                    <option value="Architecture &amp; Interior">Architecture &amp; Interior</option>
+                                    <option value="Conceptual Photoshoot">Conceptual Photoshoot</option>
+                                    <option value="Hotel, Resort &amp; Showroom">Hotel, Resort &amp; Showroom</option>
+                                    <option value="Food &amp; Beverages">Food &amp; Beverages</option>
+                                    <option value="Medical Photoshoot">Medical Photoshoot</option>
+                                    <option value="Designer &amp; Fashion Photoshoot">Designer &amp; Fashion Photoshoot
+                                    </option>
+                                    <option value="Jewellery Photoshoot">Jewellery Photoshoot</option>
+                                    <option value="Model Portfolio">Model Portfolio</option>
+                                    <option value="Event Photoshoot">Event Photoshoot</option>
+                                    <option value="Employee Photoshoot">Employee Photoshoot</option>
+                                    <option value="Celebrity Photoshoot">Celebrity Photoshoot</option>
+                                    <option value="Coffee Table">Coffee Table</option>
+                                    <option value="Lookbook">Lookbook</option>
+                                    <option value="Vlog">Vlog</option>
+                                    <option value="Product Vlog">Product Vlog</option>
+                                    <option value="Brand Vlog">Brand Vlog</option>
+                                    <option value="Corporate Vlog">Corporate Vlog</option>
+                                    <option value="Real Estate Vlog">Real Estate Vlog</option>
+                                    <option value="Fashion &amp; Accessories Vlog">Fashion &amp; Accessories Vlog
+                                    </option>
+                                    <option value="Beauty &amp; Personal Care Vlog">Beauty &amp; Personal Care Vlog
+                                    </option>
+                                    <option value="Food Vlog">Food Vlog</option>
+                                    <option value="Video Blog Series">Video Blog Series</option>
+                                    <option value="Business Vlog">Business Vlog</option>
+                                    <option value="Influncer Endorsment">Influncer Endorsment</option>
+                                    <option value="Agencies">Agencies</option>
+                                    <option value="Advertising Agency">Advertising Agency</option>
+                                    <option value="Marketing Agency">Marketing Agency</option>
+                                    <option value="Digital Marketing Agency">Digital Marketing Agency</option>
+                                    <option value="Consulting Agency">Consulting Agency</option>
+                                    <option value="Event Agency">Event Agency</option>
+                                    <option value="PR Agency">PR Agency</option>
+                                    <option value="Entertainment">Entertainment</option>
+                                    <option value="Music Video">Music Video</option>
+                                    <option value="Digital Music Label">Digital Music Label</option>
+                                    <option value="Short Film">Short Film</option>
+                                    <option value="Webseries">Webseries</option>
+                                    <option value="Talk Show">Talk Show</option>
+                                    <option value="Podcast">Podcast</option>
+                                    <option value="Film Line Production">Film Line Production</option>
+                                    <option value="TVC Production">TVC Production</option>
+                                    <option value="E-commerce Video">E-commerce Video</option>
+                                    <option value="Product Portfolio">Product Portfolio</option>
+                                    <option value="Product Catalogue Video">Product Catalogue Video</option>
+                                    <option value="Product 360° Video">Product 360° Video</option>
+                                    <option value="Sale Promo Video">Sale Promo Video</option>
+                                    <option value="Product Testimonial">Product Testimonial</option>
+                                    <option value="Product How-To">Product How-To</option>
+                                    <option value="Before &amp; After Video">Before &amp; After Video</option>
+                                    <option value="Product Creative Video">Product Creative Video</option>
+                                    <option value="Festival Sale Video">Festival Sale Video</option>
+                                    <option value="Buy Now Video">Buy Now Video</option>
+                                    <option value="E-learning">E-learning</option>
+                                    <option value="E-Learning Content">E-Learning Content</option>
+                                    <option value="Forward Board Explainer Video">Forward Board Explainer Video</option>
+                                    <option value="Interactive Video">Interactive Video</option>
+                                    <option value="Professional Courses Video">Professional Courses Video</option>
+                                    <option value="Vocational Courses">Vocational Courses</option>
+                                    <option value="Screencast">Screencast</option>
+                                    <option value="Celebrity Video Message">Celebrity Video Message</option>
+                                    <option value="Celeb Brand Endorsement">Celeb Brand Endorsement</option>
+                                    <option value="Celeb Product Promotion Video">Celeb Product Promotion Video</option>
+                                    <option value="Celeb Businesses Message Video">Celeb Businesses Message Video
+                                    </option>
+                                    <option value="Celeb Social Media Ads">Celeb Social Media Ads</option>
+                                    <option value="Celeb Social Media Post">Celeb Social Media Post</option>
+                                    <option value="Celeb Personalized Video Messages">Celeb Personalized Video Messages
+                                    </option>
+                                    <option value="Celeb Picture Rights">Celeb Picture Rights</option>
+                                    <option value="Celeb Endorsement">Celeb Endorsement</option>
+                                    <option value="Celeb Virtual Events">Celeb Virtual Events</option>
+                                    <option value="Celeb Branded Content">Celeb Branded Content</option>
+                                    <option value="Sports, Health &amp; Fitness">Sports, Health &amp; Fitness</option>
+                                    <option value="Sports Video">Sports Video</option>
+                                    <option value="Nutrition &amp; Fitness Video">Nutrition &amp; Fitness Video</option>
+                                    <option value="Sports Training Video">Sports Training Video</option>
+                                    <option value="360° Sports &amp; Fitness Facilities Tour">360° Sports &amp; Fitness
+                                        Facilities Tour</option>
+                                    <option value="Sportswear &amp; Fitness">Sportswear &amp; Fitness</option>
+                                    <option value="Health &amp; Wellness Product Video">Health &amp; Wellness Product
+                                        Video</option>
+                                    <option value="Gym &amp; Fitness Promo">Gym &amp; Fitness Promo</option>
+                                    <option value="More">More</option>
+                                    <option value="Stock Footage Video">Stock Footage Video</option>
+                                    <option value="Holographic Video">Holographic Video</option>
+                                    <option value="Interactive Video">Interactive Video</option>
+                                    <option value="Crowdsourcing">Crowdsourcing</option>
+                                    <option value="Enthusiast Brand Videos">Enthusiast Brand Videos</option>
+                                    <option value="Video Resume">Video Resume</option>
+                                    <option value="Festival Video">Festival Video</option>
+                                    <option value="Instagram Story Video">Instagram Story Video</option>
+                                    <option value="Baby Product Video">Baby Product Video</option>
+                                    <option value="Discount/Offer Video">Discount/Offer Video</option>
+                                    <option value="Video Newsletter">Video Newsletter</option>
+                                    <option value="Cutom Tailored Videos">Cutom Tailored Videos</option>
+                                    <option value="Real Estate Industry">Real Estate Industry</option>
+                                    <option value="Area Wiki Video">Area Wiki Video</option>
+                                    <option value="Walkthroughs">Walkthroughs</option>
+                                    <option value="Property Anchored Tour">Property Anchored Tour</option>
+                                    <option value="360° Site Experience">360° Site Experience</option>
+                                    <option value="3D Virtual Tours">3D Virtual Tours</option>
+                                    <option value="Time-Lapse">Time-Lapse</option>
+                                    <option value="Aerial Drone Tour">Aerial Drone Tour</option>
+                                    <option value="Property Listing Video">Property Listing Video</option>
+                                    <option value="Property Interiors">Property Interiors</option>
+                                    <option value="Neighborhood Video">Neighborhood Video</option>
+                                    <option value="Property Guided Tour">Property Guided Tour</option>
+                                    <option value="Property Promotion Video">Property Promotion Video</option>
+                                    <option value="Property  Overview Video">Property Overview Video</option>
+                                    <option value="Healthcare Industry">Healthcare Industry</option>
+                                    <option value="Doctor Talk Video">Doctor Talk Video</option>
+                                    <option value="Patient Testimonials">Patient Testimonials</option>
+                                    <option value="Medical Explainer">Medical Explainer</option>
+                                    <option value="Medical Promotional Video">Medical Promotional Video</option>
+                                    <option value="Hospital Walkthroughs">Hospital Walkthroughs</option>
+                                    <option value="Meet Our Experts/Doctor Profiles">Meet Our Experts/Doctor Profiles
+                                    </option>
+                                    <option value="Patient Story">Patient Story</option>
+                                    <option value="Patient Safety">Patient Safety</option>
+                                    <option value="Healthcare Safety">Healthcare Safety</option>
+                                    <option value="Medical Tourism">Medical Tourism</option>
+                                    <option value="360° Hospital &amp; Lab Tour">360° Hospital &amp; Lab Tour</option>
+                                    <option value="Case Study Video">Case Study Video</option>
+                                    <option value="360° Surgery Video">360° Surgery Video</option>
+                                    <option value="ER or Urgent Care Video">ER or Urgent Care Video</option>
+                                    <option value="Medical Equipment Video">Medical Equipment Video</option>
+                                    <option value="60 Seconds Series">60 Seconds Series</option>
+                                    <option value="Travel, Tourism &amp; Hospitality">Travel, Tourism &amp; Hospitality
+                                    </option>
+                                    <option value="Hotel Overview Video">Hotel Overview Video</option>
+                                    <option value="Restaurant Promotional Video">Restaurant Promotional Video</option>
+                                    <option value="Resort &amp; Spa Video">Resort &amp; Spa Video</option>
+                                    <option value="Travel Agency Video">Travel Agency Video</option>
+                                    <option value="360° &amp; VR Hotel,Resort, Spa, Video">360° &amp; VR Hotel,Resort,
+                                        Spa, Video</option>
+                                    <option value="F &amp; B Training">F &amp; B Training</option>
+                                    <option value="Hospitality Training">Hospitality Training</option>
+                                    <option value="Food Vlog">Food Vlog</option>
+                                    <option value="Food Safety">Food Safety</option>
+                                    <option value="Cooking Videos">Cooking Videos</option>
+                                    <option value="Cinematic Food Promo Video">Cinematic Food Promo Video</option>
+                                    <option value="Food Processing &amp; Horeca">Food Processing &amp; Horeca</option>
+                                    <option value="Food App Video">Food App Video</option>
+                                    <option value="Slow-Mo Cooking Video">Slow-Mo Cooking Video</option>
+                                    <option value="Food &amp; Beverage  Promo">Food &amp; Beverage Promo</option>
+                                    <option value="Food &amp; Restaurant Vlog">Food &amp; Restaurant Vlog</option>
+                                    <option value="Stop Motion Video">Stop Motion Video</option>
+                                    <option value="Food Reviews">Food Reviews</option>
+                                    <option value="Dish Spotlight Videos">Dish Spotlight Videos</option>
+                                    <option value="Restaurant Tour">Restaurant Tour</option>
+                                    <option value="Fine Dining Video">Fine Dining Video</option>
+                                    <option value="FMCG/CPG Industry">FMCG/CPG Industry</option>
+                                    <option value="Poduct Promotional Video">Poduct Promotional Video</option>
+                                    <option value="Digital Ad Film">Digital Ad Film</option>
+                                    <option value="Brand Film">Brand Film</option>
+                                    <option value="Product Film">Product Film</option>
+                                    <option value="Promotional Film">Promotional Film</option>
+                                    <option value="Campaining Videos">Campaining Videos</option>
+                                    <option value="Multi Product Video Series">Multi Product Video Series</option>
+                                    <option value="60 Second Series">60 Second Series</option>
+                                    <option value="Case Study">Case Study</option>
+                                    <option value="FMCG Commercial Video">FMCG Commercial Video</option>
+                                    <option value="Manufacturing Industry">Manufacturing Industry</option>
+                                    <option value="High Quality Corporate Video">High Quality Corporate Video</option>
+                                    <option value="Industry Experts Interviews">Industry Experts Interviews</option>
+                                    <option value="Made In A Day">Made In A Day</option>
+                                    <option value="How It's Made Video">How It's Made Video</option>
+                                    <option value="Induction Video">Induction Video</option>
+                                    <option value="Product Demo Video">Product Demo Video</option>
+                                    <option value="Manufacturing Facility Tour">Manufacturing Facility Tour</option>
+                                    <option value="Assembly Line Training">Assembly Line Training</option>
+                                    <option value="B2B Profile Video">B2B Profile Video</option>
+                                    <option value="B2C Promotion Video">B2C Promotion Video</option>
+                                    <option value="Manufacturing Overview">Manufacturing Overview</option>
+                                    <option value="B2B Sales Video">B2B Sales Video</option>
+                                    <option value="Accessories &amp; Appliances">Accessories &amp; Appliances</option>
+                                    <option value="Personal Care Appliances">Personal Care Appliances</option>
+                                    <option value="Health Care Appliances">Health Care Appliances</option>
+                                    <option value="Smart Devices &amp; Accessories">Smart Devices &amp; Accessories
+                                    </option>
+                                    <option value="Home Appliances">Home Appliances</option>
+                                    <option value="Kitchen Appliances">Kitchen Appliances</option>
+                                    <option value="Computer Accessories &amp; Peripherals">Computer Accessories &amp;
+                                        Peripherals</option>
+                                    <option value="Mobile &amp; Accessories">Mobile &amp; Accessories</option>
+                                    <option value="Furniture &amp; Décor Industry">Furniture &amp; Décor Industry
+                                    </option>
+                                    <option value="Home Furniture">Home Furniture</option>
+                                    <option value="Smart Living Products">Smart Living Products</option>
+                                    <option value="Cleaning &amp; Sanitation">Cleaning &amp; Sanitation</option>
+                                    <option value="Home Décor Products">Home Décor Products</option>
+                                    <option value="Furniture, Fixtures &amp; Equipment">Furniture, Fixtures &amp;
+                                        Equipment</option>
+                                    <option value="Mattress &amp; Box Spring">Mattress &amp; Box Spring</option>
+                                    <option value="Home Care Product Video">Home Care Product Video</option>
+                                    <option value="Interior Design Video">Interior Design Video</option>
+                                    <option value="Food &amp; Beverages Industry">Food &amp; Beverages Industry</option>
+                                    <option value="Grocery &amp; Frozen Foods">Grocery &amp; Frozen Foods</option>
+                                    <option value="Coffee, Tea &amp; Beverages">Coffee, Tea &amp; Beverages</option>
+                                    <option value="Biscuit, Cookies &amp; Wafers">Biscuit, Cookies &amp; Wafers</option>
+                                    <option value="Spices &amp; Masale">Spices &amp; Masale</option>
+                                    <option value="Packaged Food Product">Packaged Food Product</option>
+                                    <option value="Cake &amp; Baked Videos">Cake &amp; Baked Videos</option>
+                                    <option value="Beauty &amp; Cosmetics Industry">Beauty &amp; Cosmetics Industry
+                                    </option>
+                                    <option value="Health &amp; Personal Care Products">Health &amp; Personal Care
+                                        Products</option>
+                                    <option value="Hair Care Video">Hair Care Video</option>
+                                    <option value="Skincare Video">Skincare Video</option>
+                                    <option value="Makeup Product Video">Makeup Product Video</option>
+                                    <option value="Grooming Product Video">Grooming Product Video</option>
+                                    <option value="Baby Care Product Video">Baby Care Product Video</option>
+                                    <option value="Mom Care Product Video">Mom Care Product Video</option>
+                                    <option value="Health &amp; Wellness Product Video">Health &amp; Wellness Product
+                                        Video</option>
+                                    <option value="Ayurveda Care Product Video">Ayurveda Care Product Video</option>
+                                    <option value="Luxury Goods">Luxury Goods</option>
+                                    <option value="Fashion Industry">Fashion Industry</option>
+                                    <option value="Clothing &amp; Designer Boutique">Clothing &amp; Designer Boutique
+                                    </option>
+                                    <option value="Jewellery &amp; Accessories">Jewellery &amp; Accessories</option>
+                                    <option value="Handbags &amp; Clutches">Handbags &amp; Clutches</option>
+                                    <option value="Sportswear &amp; Fitness">Sportswear &amp; Fitness</option>
+                                    <option value="Luggage &amp; Travel">Luggage &amp; Travel</option>
+                                    <option value="Watches &amp; Sunglasses">Watches &amp; Sunglasses</option>
+                                    <option value="Perfume &amp; Deo">Perfume &amp; Deo</option>
+                                    <option value="Men's Footwear">Men's Footwear</option>
+                                    <option value="Women's Footwear">Women's Footwear</option>
+                                    <option value="Automobile">Automobile</option>
+                                    <option value="Home Appliances Industry">Home Appliances Industry</option>
+                                    <option value="Software &amp; Technology Industry">Software &amp; Technology
+                                        Industry</option>
+                                    <option value="Warehouse &amp; Logistics">Warehouse &amp; Logistics</option>
+                                    <option value="Electrical &amp; Electronics Industry">Electrical &amp; Electronics
+                                        Industry</option>
+                                    <option value="Pharmaceuticals Industry">Pharmaceuticals Industry</option>
+                                    <option value="Bank, Finance &amp; Insurance">Bank, Finance &amp; Insurance</option>
+                                    <option value="Consultancy Industry">Consultancy Industry</option>
+                                    <option value="Telecommunication Industry">Telecommunication Industry</option>
+                                    <option value="Service Industry">Service Industry</option>
+                                    <option value="Oil &amp; energy Industry">Oil &amp; energy Industry</option>
+                                    <option value="Conglomerate Industry">Conglomerate Industry</option>
+                                    <option value="Agriculture &amp; Fertilizer Industry">Agriculture &amp; Fertilizer
+                                        Industry</option>
+                                    <option value="Chemicals &amp; Gases Industry">Chemicals &amp; Gases Industry
+                                    </option>
+                                    <option value="Media Industry">Media Industry</option>
+                                    <option value="PSU &amp; Government">PSU &amp; Government</option>
+                                    <option value="Iron &amp; Steel Industry">Iron &amp; Steel Industry</option>
+                                    <option value="Aviation Industry">Aviation Industry</option>
+                                    <option value="Mineral &amp; Metals Industry">Mineral &amp; Metals Industry</option>
+                                    <option value="Plastic &amp; Rubber Industry">Plastic &amp; Rubber Industry</option>
+                                    <option value="Footwear Industry">Footwear Industry</option>
+                                    <option value="Paint &amp; Cement Industry">Paint &amp; Cement Industry</option>
+                                    <option value="Biotechnology Industry">Biotechnology Industry</option>
+                                    <option value="Dairy Products Industry">Dairy Products Industry</option>
+                                    <option value="Publishing Industry">Publishing Industry</option>
+                                    <option value="Shoot Anywhere in India">Shoot Anywhere in India</option>
+                                    <option value="Single Set Up">Single Set Up</option>
+                                    <option value="Multi Camera Set Up">Multi Camera Set Up</option>
+                                    <option value="Multi Projects">Multi Projects</option>
+                                    <option value="Directed Pro Shoot">Directed Pro Shoot</option>
+                                    <option value="Pro Video Edit">Pro Video Edit</option>
+                                    <option value="Video Marketing">Video Marketing</option>
+                                    <option value="Video Strategy">Video Strategy</option>
+                                    <option value="Video Seeding &amp; Activation">Video Seeding &amp; Activation
+                                    </option>
+                                    <option value="Why Videos">Why Videos</option>
+                                    <option value="Hybrid Promotion">Hybrid Promotion</option>
+                                    <option value="Reporting &amp; Optimization">Reporting &amp; Optimization</option>
+                                    <option value="Advertising">Advertising</option>
+                                    <option value="Sales and Marketing">Sales and Marketing</option>
+                                    <option value="Presentation Video">Presentation Video</option>
+                                    <option value="Fashion &amp; Lifestyle">Fashion &amp; Lifestyle</option>
+                                    <option value="Manufacturing Industry">Manufacturing Industry</option>
+                                    <option value="People Profile">People Profile</option>
+                                    <option value="Brand Video">Brand Video</option>
+                                    <option value="Corporate Video">Corporate Video</option>
+                                    <option value="Digital Media Ads">Digital Media Ads</option>
+                                    <option value="Testimonial">Testimonial</option>
+                                    <option value="Startup &amp; Scaleups">Startup &amp; Scaleups</option>
+                                    <option value="360° and VR">360° and VR</option>
+                                </datalist>
+                            </div>
+                            <div class="col-sm-6 mb-2">
+                                <label for="other_project_details" class="form-label">Or what are you looking
+                                    for?</label>
+                                <input name="other_project_details" type="text" class="form-control"
+                                    id="other_project_details" placeholder="Other video category">
+                            </div>
+                            <div class="col-sm-12 mb-3">
+                                <textarea name="project_description" class="form-control" id="project_description"
+                                    style="height: 100px;" placeholder="Project description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <legend>Shoot Details</legend>
+                        <p class="text-muted"><small>Let us know when you need your videos delivered and details of your
+                                shoot.</small></p>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-12 mb-1">
+                                <label for="shoot_details" class="form-label">Set the exact location and time for the
+                                    shoot.</label>
+                                <div class="row mb-3">
+                                    <div class="col-lg-4 col-md-6 mb-1">
+                                        <select name="project_country" type="text" class="form-select">
+                                            <option value="" selected="" disabled="">Select your country</option>
+                                            <option value="India">India</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 mb-1">
+                                        <input name="project_city_state" type="text" class="form-control"
+                                            placeholder="Fill your city and state">
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 mb-1">
+                                        <input name="project_pincode" type="text" class="form-control"
+                                            placeholder="Pincode/Zipcode">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="mb-4">
+                        <legend>Delivery speed</legend>
+                        <p class="text-muted"><small>Let us know when you need your final video completed and delivered
+                                by.</small></p>
+
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+                                <select name="delivery_speed" type="text" class="form-select" id="delivery_speed"
+                                    placeholder="Video types">
+                                    <option value="" selected="" disabled="">Select from given options</option>
+                                    <option value="Within 12 hours">Within 12 hours</option>
+                                    <option value="Within 24 hours">Within 24 hours</option>
+                                    <option value="Within 48 hours">Within 48 hours</option>
+                                    <option value="Within 72 hours">Within 72 hours</option>
+                                    <option value="Within 10 days">Within 10 days</option>
+                                    <option value="Within 15 days">Within 15 days</option>
+                                    <option value="One week plus">One week plus</option>
+                                    <option value="Within one month">Within one month</option>
+                                    <option value="One month plus">One month plus</option>
+                                    <option value="Flexi">Flexi</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="mb-4">
+                        <legend>Project Budget</legend>
+                        <p class="text-muted"><small>Let us know how much you're looking to spend.</small></p>
+
+                        <div class="row">
+                            <div class="col-sm-12 mb-3">
+
+                                <input type="range" id="range" class="form-range" value="10" min="0" max="5000"
+                                    step="10">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">INR</span>
+                                    </div>
+                                    <input type="text" class="form-control output" name="project_budget"
+                                        placeholder="Project budget">
+                                </div>
+                                <script>
+                                    $('#range').on("input", function () {
+                                        if (this.value > 1000) {
+                                            this.setAttribute("step", "500")
+                                            $('.output').val(this.value + ",000");
+                                        } else {
+                                            this.setAttribute("step", "10")
+                                            $('.output').val(this.value + ",000");
+                                        }
+                                    }).trigger("change");
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="mb-4">
+                        <legend>Reference Link</legend>
+                        <p class="text-muted"><small>Share YouTube, Vimeo, any other links, or upload a file to help us
+                                understand what you want.</small></p>
+
+                        <div class="row">
+                            <div class="col-sm-12 mb-2 reference_link">
+                                <input name="reference_link[]" type="text" class="form-control mb-1"
+                                    placeholder="Eg. http://youtub-brand video">
+                            </div>
+                            <div class="col-sm-12 mb-3">
+                                <button type="button" class="btn btn-sm btn-outline-primary"
+                                    onclick="addMoreReferenceLink()">+ Add more</button>
+                            </div>
+                            <script>
+                                inputField = '<input name="reference_link[]" type="text" class="form-control mb-1" placeholder="Eg. http://youtub-brand video">'
+                                const addMoreReferenceLink = () => {
+                                    inputFieldBox = $('.reference_link')
+                                    console.log(inputFieldBox[0].querySelectorAll('input').length)
+                                    if (inputFieldBox[0].querySelectorAll('input').length < 10) {
+                                        inputFieldBox.append(inputField)
+                                    }
+                                }
+                            </script>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Prove that you're not a robot</label>
+                        <div class="h-captcha" data-sitekey="20f8bf2c-ced8-4abe-80f1-d55c27a91dd9"
+                            data-callback="onSubmitForm" data-size="compact"></div>
+                    </div>
+
+
+                    <div class="mb-4">
+                        <legend>Well done!</legend>
+                        <p class="text-muted"><small>We hope you are happy with your brief. Review your brief and
+                                submitted your project.</small></p>
+                    </div>
+
+
+                    <div class="d-flex">
+                        <button type="submit" name="submit" class="btn-lg btn btn-primary w-100 border">
+                            <div class="d-flex justify-content-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-send my-auto p-1">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                                <span class="my-auto">Submit</span>
+                            </div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% if messages %}
+{% for message in messages %}
+ {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+
+{% endfor %}
+
+{% endif %}
+
+{% endblock body %}
