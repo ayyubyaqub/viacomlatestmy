@@ -1,0 +1,487 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-84644047-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-84644047-1');
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> {% block meta %} {% endblock meta %}
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- jQuery -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    {% block canonical %}
+    <link rel="canonical" href="https://viacomindia.com" />
+    {% endblock canonical %}
+    {% include "required/header.html" %} {% block styles %} {% endblock styles %}
+    <style>
+        .btn-brown {
+            background-color: #ababab;
+            color: #fff;
+        }
+
+        .btn-brown:hover {
+            background-color: #ababab;
+            color: #fff;
+            box-shadow: 1px 4px 10px #888888;
+        }
+
+        .make-height-auto {
+            min-height: 35vh;
+        }
+
+        @media (max-width: 1000px) {
+            .make-height-auto {
+                min-height: auto;
+            }
+        }
+
+        .make-height-auto-yt-video {
+            min-height: 32vh;
+        }
+
+        @media (max-width: 1000px) {
+            .make-height-auto-yt-video {
+                height: 30vh;
+            }
+        }
+    </style>
+    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+    <title>
+        {{meta_title}} | India’s Preferred Content Production Services
+    </title>
+</head>
+
+<body>
+    {% include "required/navigation.html" %} {% block body %} {% endblock body %}
+
+
+    {% if request.path == "/contactus/" or request.path == "/create_video/" or request.path == "/contact-us/" %}
+    {% else %}
+    <div class="mb-1 p-5 text-light bg-dark rounded container-fluid mb-5">
+        <div class="container mt-5">
+            <h3 class="text-center fw-light mb-5">Create high quality videos and reach your target audience now</h3>
+            <div class="row row-cols-1 row-cols-md-1 row-cols-lg-3 g-4 justify-content-center">
+                <div class="col">
+                    <button class="w-100 rounded-0 btn btn-lg btn-primary"
+                        onclick="window.location.href='{%url 'create_video'%}'"><svg xmlns="http://www.w3.org/2000/svg"
+                            width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-plus">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg> Create Video</button>
+                </div>
+                <div class="col">
+                    <button class="w-100 rounded-0 btn btn-lg text-light border-light"
+                        onclick="window.location.href='/contact-us#contact'">Contact us</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <footer class="bg-dark text-light p-5 w-100">
+        <div class="container">
+            <div class="row row-cols-lg-5 row-cols-md-2 row-cols-1">
+
+                <!-- About viacom india here -->
+                <div class="col">
+                    <div class="d-flex w-100">
+                        <div class="me-auto">
+                            <h4 style="border-bottom: 2px solid white;">About</h4>
+                        </div>
+                    </div>
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" aria-current="page" href="/about-us">About us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" aria-current="page" href="/about-us/#team">Our team</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" aria-current="page" href="#!">VI groups</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="/works">Our works</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#!">Case study</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="/agencies">Agencies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#!">Media</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" target="_blank" href="//videoagency.in/">Blogs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="/contact-us">Contact us</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- About viacom india ends here -->
+
+
+                <!-- Our offerings here -->
+                <div class="col">
+                    <div class="d-flex w-100">
+                        <div class="me-auto">
+                            <h4 style="border-bottom: 2px solid white;">Our offerings</h4>
+                        </div>
+                    </div>
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a href="/marketplace" class="nav-link text-light firstLetterCapitalizer">curated
+                                marketplace</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/supplementary-industry-video-marketplace"
+                                class="nav-link text-light firstLetterCapitalizer">Supplementary Industry Video
+                                Marketplace</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/differentiated-industry-content"
+                                class="nav-link text-light firstLetterCapitalizer">Differentiated Industry Content</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/#video-production-flexibility"
+                                class="nav-link text-light firstLetterCapitalizer">Video Production Flexibility
+                                marketplace</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/#video-distribution-marketing-and-seeding"
+                                class="nav-link text-light firstLetterCapitalizer">Video Distribution, Marketing &
+                                Seeding</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/#trending-video-content"
+                                class="nav-link text-light firstLetterCapitalizer">Trending Video Content</a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a href="/video_categories/?get=video production"
+                                class="nav-link text-light firstLetterCapitalizer">video production</a>
+                        </li> -->
+                        <!-- <li class="nav-item">
+                            <a href="/video_categories/?get=video marketing and seeding"
+                                class="nav-link text-light firstLetterCapitalizer">video marketing and seeding</a>
+                        </li> -->
+                        <!-- <li class="nav-item">
+                            <a href="/video_categories/?get=trending category"
+                                class="nav-link text-light firstLetterCapitalizer">trending category</a>
+                        </li> -->
+                    </ul>
+                </div>
+                <!-- Our offerings ends here -->
+
+
+                <!-- Subscription here -->
+                <div class="col">
+                    <div class="d-flex w-100">
+                        <div class="me-auto">
+                            <h4 style="border-bottom: 2px solid white;">Subscription</h4>
+                        </div>
+                    </div>
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a href="/subscription" class="nav-link text-light">Basic</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/subscription" class="nav-link text-light">Standard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/subscription" class="nav-link text-light">Premium</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/subscription" class="nav-link text-light">Ultimate</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/subscription" class="nav-link text-light">Video Series</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/subscription" class="nav-link text-light">Training Video Package</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Subscription ends here -->
+
+
+                <!-- Others here -->
+                <div class="col">
+                    <div class="d-flex w-100">
+                        <div class="me-auto">
+                            <h4 style="border-bottom: 2px solid white;">Others</h4>
+                        </div>
+                    </div>
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a href="/creators" class="nav-link text-light">Creators</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#!" class="nav-link text-light">Careers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#!" class="nav-link text-light">Academy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#!" class="nav-link text-light">Dare to Creative</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#!" class="nav-link text-light">DM & SM Marketing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#!" class="nav-link text-light">Branding & Promotion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/influencer-market-place-video-ads" class="nav-link text-light">Influencer
+                                Marketplace</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Others ends here -->
+
+
+                <!-- Terms and conditions here -->
+                <div class="col">
+                    <div class="d-flex w-100">
+                        <div class="me-auto">
+                            <h4 style="border-bottom: 2px solid white;">Terms &amp; conditions</h4>
+                        </div>
+                    </div>
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a href="/terms-and-condition/work-terms-and-conditions" class="nav-link text-light">Work
+                                terms and conditions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/terms-and-condition/brand-terms-and-conditions" class="nav-link text-light">Brand
+                                terms & conditions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/terms-and-condition/changes-and-refunds-policy"
+                                class="nav-link text-light">Changes and Refunds Policy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/terms-and-condition/creator-term-conditions" class="nav-link text-light">Creator
+                                terms &amp;
+                                conditions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/terms-and-condition/data-protection-policy" class="nav-link text-light">Data
+                                protection policy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/terms-and-condition/acceptable-use-policy" class="nav-link text-light">Acceptable
+                                use policy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/help" class="nav-link text-light">Help</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/terms-and-conditions" class="nav-link text-light">Download</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Terms and conditions ends here -->
+
+            </div>
+            <hr>
+            <div class="container justify-content-center">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
+                    <div class="col">
+                        <p class="text-start">
+                            Email us at
+                            <br>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-mail">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                </path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg> video@viacomindia.com
+                        </p>
+                    </div>
+                    <div class="col">
+                        <p class="text-start">
+                            Call us on
+                            <br>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-smartphone">
+                                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                            </svg> 9717337326
+                        </p>
+                    </div>
+                    <div class="col">
+                        <p class="text-start">
+                            WhatsApp us on
+                            <br>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-message-circle">
+                                <path
+                                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                                </path>
+                            </svg> 7208999001
+                        </p>
+                    </div>
+                    <div class="col">
+                        <p class="text-start">
+                            Telephone no.
+                            <br>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-phone">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg> 0124-518-0499
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+            <div class="row justify-content-center h-100">
+                <div class="col my-auto d-flex">
+                    <img src="{{imageclientand_vi.image_VI.url}}" class="mx-auto" style="width:100px;">
+                </div>
+            </div>
+            <br>
+            <div class="row justify-content-center h-100">
+                <div class="col-sm-4 my-auto">
+                    <p class="fw-bold text-center">We also support <img
+                            src="https://res.cloudinary.com/ninety-seconds/image/upload/c_thumb,fl_lossy,fl_progressive/v1/-homepage-icons/-footer/badges-cards.svg"
+                            alt=""></p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-8">
+                    <p>Copyright © 2015-2022 <span class="fw-bold">Viacom India</span>. All rights reserved</p>
+                </div>
+                <div class="col-sm-4">
+                    <div class="d-flex justify-content-between">
+                        <a class="text-white" href="https://www.youtube.com/c/ViacomIndiatv" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-youtube">
+                                <path
+                                    d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z">
+                                </path>
+                                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                            </svg>
+                        </a>
+                        <a class="text-white" href="https://www.facebook.com/ViacomIndiaLLP" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-facebook">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a class="text-white" href="https://www.instagram.com/viacomindia/" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-instagram">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a class="text-white" href="https://www.linkedin.com/company/viacomindia/" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-linkedin">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                        <a class="text-white" href="https://twitter.com/Viacomindia" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-twitter">
+                                <path
+                                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+                                </path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="row justify-content-center">-->
+            <!--    <div class="col">-->
+            <!--        Designed and developed with <i class="fas fa-heart text-danger"></i> by <a class="text-decoration-none" href="//facebook.com/encodestudio.in" target="_blank">Encode studio</a>-->
+            <!--    </div>-->
+            <!--</div>-->
+        </div>
+
+    </footer>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    {% include "required/footer.html" %} {% block scripts %} {% endblock scripts %}
+    <script>
+        const changeYoutubeVIdeo = (videoLink) => {
+            console.log(videoLink)
+            var youtube_video_here = document.getElementById('youtube_video_here')
+            var newYTVideo = "https://www.youtube.com/embed/" + videoLink + "?version=3&rel=0&autoplay=0&loop=1&controls=1&"
+            youtube_video_here.setAttribute("src", newYTVideo)
+        }
+        $('#ourWorkModel').on('hidden.bs.modal', function (e) {
+            var youtube_video_here = document.getElementById('youtube_video_here')
+            youtube_video_here.setAttribute("src", "")
+        })
+    </script>
+    <script>
+
+        function onSubmitForm(token) {
+            // token = $("textarea[name='h-captcha-response']").val();
+            $.ajax({
+                url: '/verify-hcaptcha-token',
+                method: 'post',
+                data: {
+                    "h-captcha-response": token,
+                    "csrfmiddlewaretoken": $("[name='csrfmiddlewaretoken']").val()
+                },
+                success: (res) => {
+                    console.log(res)
+                    if (res == 'SUCCESS') {
+                        $("button[name='submitButton']").removeAttr('disabled')
+                    } else {
+                        alert("Captcha verification failed try again later!")
+                    }
+                },
+                error: (err) => {
+                    console.log(`Error: ${err}`)
+                    alert(`Error Try again later!`)
+                }
+            })
+        };
+    </script>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>
